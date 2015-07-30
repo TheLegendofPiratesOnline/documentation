@@ -85,13 +85,13 @@ message = A Google Authenticator code is required to login.
 {u'status': u'3', u'message': u'A Google Authenticator code is required to login.'}
 ```
 ### Successful Login
-'''
+```
 status = 7
 message = OK
-'''
-'''
+```
+```
 {u'status': u'7', u'message': u'OK', u'token': u'login-token', u'gameserver': u'localhost'}
-'''
+```
 
 The user can now launch the game! Set the environment variables for the gameserver and the token and then boot the game.
 
