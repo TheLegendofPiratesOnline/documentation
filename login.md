@@ -14,7 +14,7 @@ All responses will be provided in JSON format.
 # Calling the API
 
 ### Headers
-All calls to the API should be made via ```POST``` to api.piratesonline.co/login/ using a urlencoded form. To do this, add ```"Content-type": "application/x-www-form-urlencoded"``` to your headers.
+All calls to the API should be made via ```POST``` to api.piratesonline.co/login/ using a urlencoded form. To do this, add ```'Content-type': 'application/x-www-form-urlencoded'``` to your headers.
 
 ### Parameters
 | Params     | Description                                        |
@@ -46,7 +46,7 @@ status = 1
 message = The username or password is incorrect.
 ```
 ```
-{u'status': u'1', u'message': u'The username or password is incorrect.'}
+{"status": "1", "message": "The username or password is incorrect."}
 ```
 ### Account Banned
 ```
@@ -54,7 +54,7 @@ status = 4
 message = Your account is banned. Please try to login from website for more info.
 ```
 ```
-{u'status': u'4', u'message': u'Your account is banned. Please try to login from website for more info.'}
+{"status": "4", "message": "Your account is banned. Please try to login from website for more info."}
 ```
 
 ### Server Closed
@@ -63,7 +63,7 @@ status = 5
 message = The server is currently closed.
 ```
 ```
-{u'status': u'5', u'message': u'The server is currently closed.'}
+{"status": "5", "message": "The server is currently closed."}
 ```
 ### Email Unverified
 ```
@@ -71,7 +71,7 @@ status = 8
 message = This account has not been verified yet. Please check your email.
 ```
 ```
-{u'status': u'8', u'message': u'This account has not been verified yet. Please check your email.'}
+{"status": "8", "message": "This account has not been verified yet. Please check your email."}
 ```
 
 ## Successful responses
@@ -82,7 +82,7 @@ status = 3
 message = A Google Authenticator code is required to login.
 ```
 ```
-{u'status': u'3', u'message': u'A Google Authenticator code is required to login.'}
+{"status": "3", "message": "A Google Authenticator code is required to login."}
 ```
 ### Successful Login
 ```
@@ -90,7 +90,7 @@ status = 7
 message = OK
 ```
 ```
-{u'status': u'7', u'message': u'OK', u'token': u'login-token', u'gameserver': u'localhost'}
+{"status": "7", "message": "OK", "token": "login-token", "gameserver": "localhost"}
 ```
 
 The user can now launch the game! Set the environment variables for the gameserver and the token and then boot the game.
