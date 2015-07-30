@@ -39,7 +39,7 @@ The API will respond in one of 9 ways.
 | EmailUnverified |     8      | This accounts email has not been verified         |
 
 
-## Failure responces
+## Failure responses
 If any one of these responses are received, the login process has ended with an error. The launcher will notify the end-user that an error has occurred and prompt them with the reason.
 ```
 status = 1
