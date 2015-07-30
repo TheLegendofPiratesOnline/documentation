@@ -26,7 +26,7 @@ All calls to the API should be made via ```POST``` to api.piratesonline.co/login
 
 The API will respond in one of 9 ways.
 
-| Response        | Error Code | Description                                       |
+| Response        |    Code    | Description                                       |
 |-----------------|------------|---------------------------------------------------|
 | UnknownError    |     0      | An unknown error has occurred.                    |
 | Invalid ID/Pass |     1      | The submitted Username/Password was incorrect.    |
