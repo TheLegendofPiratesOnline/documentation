@@ -1,6 +1,6 @@
 # The Legend of Pirates Online Documentation
 
-This repository contains documentation for TLOPO.
+This repository will contain documentation for TLOPO.
 
 # Table of Contents
 
