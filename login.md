@@ -41,6 +41,7 @@ The API will respond in one of 9 ways.
 
 ## Failure responses
 If any one of these responses are received, the login process has ended with an error. The launcher will notify the end-user that an error has occurred and prompt them with the reason.
+### Invalid username/password
 ```
 status = 1
 message = The username or password is incorrect.
