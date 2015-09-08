@@ -19,8 +19,8 @@ All calls to the API should be made via ```POST``` to api.piratesonline.co/login
 ### Parameters
 | Params     | Description                                        |
 |------------|----------------------------------------------------|
-| username   | The username of the account you desire to login to |
-| password   | The password of the account you desire to login to |
+| username   | The username of the account you desire to login to.|
+| password   | The password of the account you desire to login to.|
 
 ### API Response
 
@@ -35,8 +35,8 @@ The API will respond in one of 9 ways.
 | AccountDisabled |     4      | This account is banned.                           |
 | ServerClosed    |     5      | The server is closed.                             |
 | IPBlacklisted   |     6      | This IP is banned.                                |
-| Success         |     7      | This account has successfully logged in           |
-| EmailUnverified |     8      | This accounts email has not been verified         |
+| Success         |     7      | This account has successfully logged in.          |
+| EmailUnverified |     8      | This accounts email has not been verified.        |
 
 
 ## Failure responses
