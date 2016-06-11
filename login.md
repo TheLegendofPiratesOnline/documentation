@@ -6,15 +6,14 @@ This file will explain exactly how to use the login API, and how the general lau
 
 All responses will be provided in JSON format.
 
-* Launcher POSTs a request to api.piratesonline.co/login/
-* Web responds in one of multiple ways
-* Launcher interprets web response and launches game if successful
-
+* Launcher POSTs a request to `https://api.piratesonline.co/login/`.
+* Web responds in one of multiple ways.
+* Launcher interprets web response and launches game if successful.
 
 # Calling the API
 
 ### Headers
-All calls to the API should be made via ```POST``` to api.piratesonline.co/login/ using a urlencoded form. To do this, add ```'Content-type': 'application/x-www-form-urlencoded'``` to your headers.
+All calls to the API should be made via a HTTP ```POST``` to `https://api.piratesonline.co/login/` using an urlencoded form. To do this, add ```'Content-type': 'application/x-www-form-urlencoded'``` to your headers.
 
 ### Parameters
 | Params     | Description                                        |
@@ -44,35 +43,35 @@ If any one of these responses are received, the login process has ended with an 
 ### Invalid username/password
 ```
 status = 1
-message = The username or password is incorrect.
+message = Incorrect username and/or password.
 ```
 ```
-{"status": "1", "message": "The username or password is incorrect."}
+{"status": "1", "message": "Incorrect username and/or password."}
 ```
 ### Account Banned
 ```
 status = 4
-message = Your account is banned. Please try to login from website for more info.
+message = This account is currently banned. Please log into our website for more information.
 ```
 ```
-{"status": "4", "message": "Your account is banned. Please try to login from website for more info."}
+{"status": "4", "message": "This account is currently banned. Please log into our website for more information."}
 ```
 
 ### Server Closed
 ```
 status = 5
-message = The server is currently closed.
+message = The Legend of Pirates Online is currently closed for an update. We'll be back up soon!
 ```
 ```
-{"status": "5", "message": "The server is currently closed."}
+{"status": "5", "message": "The Legend of Pirates Online is currently closed for an update. We'll be back up soon!"}
 ```
 ### Email Unverified
 ```
 status = 8
-message = This account has not been verified yet. Please check your email.
+message = This account hasn't been verified yet. Please check your email.
 ```
 ```
-{"status": "8", "message": "This account has not been verified yet. Please check your email."}
+{"status": "8", "message": "This account hasn't been verified yet. Please check your email."}
 ```
 
 ## Successful responses
@@ -91,12 +90,12 @@ status = 7
 message = OK
 ```
 ```
-{"status": "7", "message": "OK", "token": "login-token", "gameserver": "localhost"}
+{"status": "7", "message": "OK", "token": "login-cookie", "gameserver": "localhost"}
 ```
 
-The user can now launch the game! Set the environment variables for the gameserver and the token and then boot the game.
+The user can now launch the game! Set the environment variables for the gameserver and the cookie, and then run the game!
 
 | Variable         | Description                        |
 |------------------|------------------------------------|
 | TLOPO_GAMESERVER | The gameserver to connect to.      |
-| TLOPO_PLAYCOOKIE | The token provided by the server.  |
+| TLOPO_PLAYCOOKIE | The cookie provided by the server. |
