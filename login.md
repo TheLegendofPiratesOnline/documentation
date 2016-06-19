@@ -31,7 +31,7 @@ The API will respond in one of 9 ways.
 | Invalid ID/Pass |     1      | The submitted Username/Password was incorrect.    |
 | ServerError     |     2      | A server error has occurred.                      |
 | TwoStepRequired |     3      | This account has two-step authentication enabled. |
-| AccountDisabled |     4      | This account is banned.                           |
+| AccountDisabled |     4      | This account is banned or disabled.               |
 | ServerClosed    |     5      | The server is closed.                             |
 | IPBlacklisted   |     6      | This IP is banned.                                |
 | Success         |     7      | This account has successfully logged in.          |
