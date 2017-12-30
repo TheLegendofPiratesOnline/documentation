@@ -143,7 +143,9 @@ message = Have fun!
 ```
 
 ## Running the Client
-You now have all of the proper information you need to login on the client.  Set the following environment variables containing the information provided by the login API and then run the client.
+Upon receiving a status 7 response, you will have all of the proper information you need to login on the client.
+
+To login on the client, set the following environment variables containing the information provided by the login API and then run the client.
 
 | Environment Variable | Description                         |
 |----------------------|-------------------------------------|
