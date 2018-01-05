@@ -1,0 +1,464 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo.png" class="logo" alt="Logo" />
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#contacting-the-api" class="toc-h2 toc-link" data-title="Contacting the API">Contacting the API</a>
+                  </li>
+                  <li>
+                    <a href="#failure-responses" class="toc-h2 toc-link" data-title="Failure responses">Failure responses</a>
+                  </li>
+                  <li>
+                    <a href="#successful-responses" class="toc-h2 toc-link" data-title="Successful responses">Successful responses</a>
+                  </li>
+                  <li>
+                    <a href="#running-the-client" class="toc-h2 toc-link" data-title="Running the Client">Running the Client</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+          </li>
+      </div>
+        <ul class="toc-footer">
+            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>Welcome to the The Legend of Pirates Online API! You can use our API to access The Legend of Pirates Online API endpoints, which can get information on news, servers and system status.</p>
+<h1 id='authentication'>Authentication</h1>
+<ul>
+<li>Launcher POSTs a request to <code>https://api.piratesonline.co/login/</code>.</li>
+<li>Web responds in one of multiple ways.</li>
+<li>Launcher interprets web response and launches game if successful.
+
+<ul>
+<li>API will respond in JSON format.</li>
+</ul></li>
+</ul>
+<h2 id='contacting-the-api'>Contacting the API</h2><h3 id='headers'>Headers</h3>
+<p>All calls to the API should be made via a HTTP <code>POST</code> to <code>https://api.piratesonline.co/login/</code> using an urlencoded form. To do this, add <code>&#39;Content-type&#39;: &#39;application/x-www-form-urlencoded&#39;</code> to your headers.</p>
+<h3 id='parameters'>Parameters</h3>
+<ul>
+<li>For all practical uses, all API requests should be made using the general account parameters.  If the API responds with a request for a two-factor token, submit a new request containing the two-factor parameter.</li>
+<li>The following tables outline the required parameters for both cases:</li>
+</ul>
+<h4 id='general-accounts'>General Accounts</h4>
+<table><thead>
+<tr>
+<th>Params</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>username</td>
+<td>The username of the account you desire to login to.</td>
+</tr>
+<tr>
+<td>password</td>
+<td>The password of the account you desire to login to.</td>
+</tr>
+</tbody></table>
+<h4 id='account-with-two-factor-authentication'>Account with Two-factor Authentication</h4>
+<table><thead>
+<tr>
+<th>Params</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>username</td>
+<td>The username of the account you desire to login to.</td>
+</tr>
+<tr>
+<td>password</td>
+<td>The password of the account you desire to login to.</td>
+</tr>
+<tr>
+<td>gtoken</td>
+<td>The account&#39;s active two-factor authentication token.</td>
+</tr>
+</tbody></table>
+<h3 id='api-response'>API Response</h3>
+<p>The API will respond in one of 12 ways.</p>
+
+<table><thead>
+<tr>
+<th>Response</th>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>UnknownError</td>
+<td>0</td>
+<td>An unknown error has occurred.</td>
+</tr>
+<tr>
+<td>Invalid ID/Pass</td>
+<td>1</td>
+<td>The submitted Username/Password was incorrect.</td>
+</tr>
+<tr>
+<td>Server Error</td>
+<td>2</td>
+<td>A server error has occurred.</td>
+</tr>
+<tr>
+<td>Two Step Required</td>
+<td>3</td>
+<td>This account has two-step authentication enabled.</td>
+</tr>
+<tr>
+<td>Account Disabled</td>
+<td>4</td>
+<td>This account is banned or disabled.</td>
+</tr>
+<tr>
+<td>Server Closed</td>
+<td>5</td>
+<td>The server is closed.</td>
+</tr>
+<tr>
+<td>IP Blacklisted</td>
+<td>6</td>
+<td>This IP is banned.</td>
+</tr>
+<tr>
+<td>Success</td>
+<td>7</td>
+<td>This account has successfully logged in.</td>
+</tr>
+<tr>
+<td>Email Unverified</td>
+<td>8</td>
+<td>This account&#39;s email has not been verified.</td>
+</tr>
+<tr>
+<td>No Playtime</td>
+<td>9</td>
+<td>This account does not have an active playtime.</td>
+</tr>
+<tr>
+<td>Rate Limited</td>
+<td>10</td>
+<td>This account is trying to log in too quickly.</td>
+</tr>
+<tr>
+<td>Arrrmor</td>
+<td>11</td>
+<td>This account is logging in from an unknown loaction.</td>
+</tr>
+</tbody></table>
+<h2 id='failure-responses'>Failure responses</h2>
+<p>If any one of these responses are received, the login process has ended with an error. The launcher will notify the player that an error has occurred and prompt them with the reason.</p>
+<h3 id='invalid-username-password'>Invalid username/password</h3>
+<p>The submitted Username/Password was incorrect.</p>
+<pre class="highlight plaintext"><code>status = 1
+message = Incorrect username and/or password.
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Incorrect username and/or password."</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='account-banned'>Account Banned</h3>
+<p>This account is banned or disabled.</p>
+<pre class="highlight plaintext"><code>status = 4
+message = This account is on hold. Please login to www.piratesonline.co/account/banned_id/ for more information.
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This account is on hold. Please login to www.piratesonline.co/account/banned_id/ for more information."</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='server-closed'>Server Closed</h3>
+<p>The server is closed.</p>
+<pre class="highlight plaintext"><code>status = 5
+message = The Legend of Pirates Online is currently closed for an update. We'll be back up soon!
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Legend of Pirates Online is currently closed for an update. We'll be back up soon!"</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='email-unverified'>Email Unverified</h3>
+<p>This account&#39;s email hasn&#39;t been verified yet.</p>
+<pre class="highlight plaintext"><code>status = 8
+message = This account's email hasn't been verified yet. Please check yer email.
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8"</span><span class="p">,</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This account's email hasn't been verified yet. Please check yer email."</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='no-active-playtime'>No Active Playtime</h3>
+<p><strong>Deprecated</strong> no active playtime for the account</p>
+<pre class="highlight plaintext"><code>status = 9
+message = Ye do not have an active session right now.  Ye can sign up for one on our website!
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9"</span><span class="p">,</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ye do not have an active session right now.  Ye can sign up for one on our website!"</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='rate-limited'>Rate Limited</h3>
+<p>If an account sends too many login requests over a period of time</p>
+<pre class="highlight plaintext"><code>status = 10
+message = Ye are trying to login too fast.  Please try again in one minute.
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ye are trying to login too fast.  Please try again in one minute."</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='arrrmor'>Arrrmor</h3>
+<p>Two-step security for geolocation</p>
+<pre class="highlight plaintext"><code>status = 11
+message = Ye are trying to login from a new location. Please check yer email.
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ye are trying to login from a new location. Please check yer email."</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='successful-responses'>Successful responses</h2><h3 id='partial-success-two-step-required'>Partial-success: Two-Step Required</h3><pre class="highlight plaintext"><code>status = 3
+message = A two-factor authentication code is required to login.
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A two-factor authentication code is required to login."</span><span class="p">}</span><span class="w">
+</span></code></pre><h4 id='follow-up'>Follow-up:</h4>
+<p>You must send another request to the login API containing the user-supplied authentication token using the <code>gtoken</code> parameter.  If this token is invalid and/or expired, you will receive another partial-success login.  You must send the username and password again when sending this follow-up request.</p>
+<h3 id='successful-login'>Successful Login</h3><pre class="highlight plaintext"><code>status = 7
+message = Have fun!
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Have fun!"</span><span class="p">,</span><span class="w"> </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678abcdefgh"</span><span class="p">,</span><span class="w"> </span><span class="s2">"gameserver"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prod-gs-protected-agent-1.legendofpiratesonline.com"</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='running-the-client'>Running the Client</h2>
+<p>Upon receiving a status 7 response, you will have all of the proper information you need to login on the client.</p>
+
+<p>To login on the client, set the following environment variables containing the information provided by the login API and then run the client.</p>
+
+<table><thead>
+<tr>
+<th>Environment Variable</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>TLOPO_GAMESERVER</td>
+<td>The gameserver provided by the API.</td>
+</tr>
+<tr>
+<td>TLOPO_PLAYCOOKIE</td>
+<td>The token provided by the API.</td>
+</tr>
+</tbody></table>
+<h1 id='errors'>Errors</h1>
+<p>The The Legend of Pirates Online API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>500</td>
+<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+      </div>
+    </div>
+  </body>
+</html>
