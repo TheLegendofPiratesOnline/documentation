@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[]">
+  <body class="index" data-languages="[&quot;python&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -210,6 +210,9 @@
     </a>
     <div class="toc-wrapper">
       <img src="images/logo.png" class="logo" alt="Logo" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="python">python</a>
+        </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
         </div>
@@ -225,10 +228,7 @@
                     <a href="#contacting-the-api" class="toc-h2 toc-link" data-title="Contacting the API">Contacting the API</a>
                   </li>
                   <li>
-                    <a href="#failure-responses" class="toc-h2 toc-link" data-title="Failure responses">Failure responses</a>
-                  </li>
-                  <li>
-                    <a href="#successful-responses" class="toc-h2 toc-link" data-title="Successful responses">Successful responses</a>
+                    <a href="#api-response" class="toc-h2 toc-link" data-title="API Response">API Response</a>
                   </li>
                   <li>
                     <a href="#running-the-client" class="toc-h2 toc-link" data-title="Running the Client">Running the Client</a>
@@ -236,21 +236,25 @@
               </ul>
           </li>
           <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+            <a href="#conclusion" class="toc-h1 toc-link" data-title="Conclusion">Conclusion</a>
           </li>
       </div>
         <ul class="toc-footer">
-            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='https://piratesonline.co/'>Return to main website.</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the The Legend of Pirates Online API! You can use our API to access The Legend of Pirates Online API endpoints, which can get information on news, servers and system status.</p>
+<p>Welcome to The Legend of Pirates Online API! You can use our API to access The Legend of Pirates Online API endpoints, which can get information on news, servers and system status.</p>
 <h1 id='authentication'>Authentication</h1>
 <ul>
-<li>Launcher POSTs a request to <code>https://api.piratesonline.co/login/</code>.</li>
+<li>Launcher POSTs a request to the API URL.
+
+<ul>
+<li><code>https://api.piratesonline.co/login/</code>.</li>
+</ul></li>
 <li>Web responds in one of multiple ways.</li>
 <li>Launcher interprets web response and launches game if successful.
 
@@ -259,13 +263,27 @@
 </ul></li>
 </ul>
 <h2 id='contacting-the-api'>Contacting the API</h2><h3 id='headers'>Headers</h3>
-<p>All calls to the API should be made via a HTTP <code>POST</code> to <code>https://api.piratesonline.co/login/</code> using an urlencoded form. To do this, add <code>&#39;Content-type&#39;: &#39;application/x-www-form-urlencoded&#39;</code> to your headers.</p>
+<p>All calls to the API should be made via a HTTP <code>POST</code> to <code>https://api.piratesonline.co/login/</code> using an urlencoded form.  To do this, add <code>&#39;Content-type&#39;: &#39;application/x-www-form-urlencoded&#39;</code> to your headers.</p>
 <h3 id='parameters'>Parameters</h3>
 <ul>
-<li>For all practical uses, all API requests should be made using the general account parameters.  If the API responds with a request for a two-factor token, submit a new request containing the two-factor parameter.</li>
-<li>The following tables outline the required parameters for both cases:</li>
+<li>For all practical uses, all API requests should be made using the general account parameters.</li>
+<li>If the API responds with a request for a two-factor token, submit a new request containing the two-factor parameter.</li>
 </ul>
-<h4 id='general-accounts'>General Accounts</h4>
+
+<p>The following tables outline the required parameters for both cases:</p>
+<h3 id='general-accounts'>General Accounts</h3><pre class="highlight python tab-python"><code><span class="c"># ** General Account Login **</span>
+
+<span class="c"># https://pypi.python.org/pypi/requests</span>
+<span class="kn">import</span> <span class="nn">requests</span> 
+<span class="kn">import</span> <span class="nn">urllib</span>
+
+<span class="n">params</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">({</span><span class="s">'username'</span><span class="p">:</span> <span class="s">'your_username_here'</span><span class="p">,</span>
+                           <span class="s">'password'</span><span class="p">:</span> <span class="s">'your_password_here'</span><span class="p">})</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/x-www-form-urlencoded'</span><span class="p">}</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'http://api.tlopolocal.test:8000/login/'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre>
 <table><thead>
 <tr>
 <th>Params</th>
@@ -281,7 +299,20 @@
 <td>The password of the account you desire to login to.</td>
 </tr>
 </tbody></table>
-<h4 id='account-with-two-factor-authentication'>Account with Two-factor Authentication</h4>
+<h3 id='account-with-two-factor-authentication'>Account with Two-factor Authentication</h3><pre class="highlight python tab-python"><code><span class="c"># ** 2FA Account Login **</span>
+
+<span class="c"># https://pypi.python.org/pypi/requests</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">urllib</span>
+
+<span class="n">params</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">({</span><span class="s">'username'</span> <span class="p">:</span> <span class="s">'your_username_here'</span><span class="p">,</span>
+                           <span class="s">'password'</span> <span class="p">:</span> <span class="s">'your_password_here'</span><span class="p">,</span>
+                           <span class="s">'gtoken'</span>   <span class="p">:</span> <span class="s">'your_2fa_token_here'</span><span class="p">})</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/x-www-form-urlencoded'</span><span class="p">}</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'http://api.tlopolocal.test:8000/login/'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre>
 <table><thead>
 <tr>
 <th>Params</th>
@@ -301,7 +332,7 @@
 <td>The account&#39;s active two-factor authentication token.</td>
 </tr>
 </tbody></table>
-<h3 id='api-response'>API Response</h3>
+<h2 id='api-response'>API Response</h2>
 <p>The API will respond in one of 12 ways.</p>
 
 <table><thead>
@@ -372,56 +403,72 @@
 <td>This account is logging in from an unknown loaction.</td>
 </tr>
 </tbody></table>
-<h2 id='failure-responses'>Failure responses</h2>
+<h3 id='failure-responses'>Failure responses</h3>
 <p>If any one of these responses are received, the login process has ended with an error. The launcher will notify the player that an error has occurred and prompt them with the reason.</p>
-<h3 id='invalid-username-password'>Invalid username/password</h3>
+<pre class="highlight json tab-json"><code><span class="err">/*</span><span class="w"> </span><span class="err">ACTUAL</span><span class="w"> </span><span class="err">PROD</span><span class="w"> </span><span class="err">JSON</span><span class="w"> </span><span class="err">RESPONSES</span><span class="w"> </span><span class="err">*/</span><span class="w">
+
+</span><span class="err">/*</span><span class="w"> </span><span class="err">INVALID</span><span class="w"> </span><span class="err">USERNAME/PASSWORD</span><span class="w"> </span><span class="err">*/</span><span class="w">
+</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Incorrect username and/or password."</span><span class="p">}</span><span class="w">
+
+</span><span class="err">/*</span><span class="w"> </span><span class="err">ACCOUNT</span><span class="w"> </span><span class="err">BANNED</span><span class="w"> </span><span class="err">*/</span><span class="w">
+</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This account is on hold. Please login to www.piratesonline.co/account/banned_id/ for more information."</span><span class="p">}</span><span class="w">
+
+</span><span class="err">/*</span><span class="w"> </span><span class="err">SERVER</span><span class="w"> </span><span class="err">CLOSED</span><span class="w"> </span><span class="err">*/</span><span class="w">
+</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Legend of Pirates Online is currently closed for an update. We'll be back up soon!"</span><span class="p">}</span><span class="w">
+
+</span><span class="err">/*</span><span class="w"> </span><span class="err">UNVERIFIED</span><span class="w"> </span><span class="err">EMAIL</span><span class="w"> </span><span class="err">*/</span><span class="w">
+</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This account's email hasn't been verified yet. Please check yer email."</span><span class="p">}</span><span class="w">
+
+</span><span class="err">/*</span><span class="w"> </span><span class="err">NO</span><span class="w"> </span><span class="err">ACTIVE</span><span class="w"> </span><span class="err">SESSION</span><span class="w"> </span><span class="err">(DEPRECATED)</span><span class="w"> </span><span class="err">*/</span><span class="w">
+</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ye do not have an active session right now.  Ye can sign up for one on our website!"</span><span class="p">}</span><span class="w">
+
+</span><span class="err">/*</span><span class="w"> </span><span class="err">RATE</span><span class="w"> </span><span class="err">LIMITED</span><span class="w"> </span><span class="err">*/</span><span class="w">
+</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ye are trying to login too fast.  Please try again in one minute."</span><span class="p">}</span><span class="w">
+
+</span><span class="err">/*</span><span class="w"> </span><span class="err">ARRMOR</span><span class="w"> </span><span class="err">*/</span><span class="w">
+</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ye are trying to login from a new location. Please check yer email."</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='status-1-invalid-username-password'>Status 1: Invalid username/password</h3>
 <p>The submitted Username/Password was incorrect.</p>
-<pre class="highlight plaintext"><code>status = 1
-message = Incorrect username and/or password.
-</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Incorrect username and/or password."</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='account-banned'>Account Banned</h3>
+<h3 id='status-4-account-banned'>Status 4: Account Banned</h3>
 <p>This account is banned or disabled.</p>
-<pre class="highlight plaintext"><code>status = 4
-message = This account is on hold. Please login to www.piratesonline.co/account/banned_id/ for more information.
-</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This account is on hold. Please login to www.piratesonline.co/account/banned_id/ for more information."</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='server-closed'>Server Closed</h3>
-<p>The server is closed.</p>
-<pre class="highlight plaintext"><code>status = 5
-message = The Legend of Pirates Online is currently closed for an update. We'll be back up soon!
-</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Legend of Pirates Online is currently closed for an update. We'll be back up soon!"</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='email-unverified'>Email Unverified</h3>
+<h3 id='status-5-server-closed'>Status 5: Server Closed</h3>
+<p>The servers are currently closed for an update.</p>
+<h3 id='status-8-email-unverified'>Status 8: Email Unverified</h3>
 <p>This account&#39;s email hasn&#39;t been verified yet.</p>
-<pre class="highlight plaintext"><code>status = 8
-message = This account's email hasn't been verified yet. Please check yer email.
-</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8"</span><span class="p">,</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This account's email hasn't been verified yet. Please check yer email."</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='no-active-playtime'>No Active Playtime</h3>
-<p><strong>Deprecated</strong> no active playtime for the account</p>
-<pre class="highlight plaintext"><code>status = 9
-message = Ye do not have an active session right now.  Ye can sign up for one on our website!
-</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9"</span><span class="p">,</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ye do not have an active session right now.  Ye can sign up for one on our website!"</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='rate-limited'>Rate Limited</h3>
-<p>If an account sends too many login requests over a period of time</p>
-<pre class="highlight plaintext"><code>status = 10
-message = Ye are trying to login too fast.  Please try again in one minute.
-</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ye are trying to login too fast.  Please try again in one minute."</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='arrrmor'>Arrrmor</h3>
+<h3 id='status-9-no-active-playtime'>Status 9: No Active Playtime</h3>
+<p><strong>Deprecated</strong> No active playtime for the account.</p>
+<h3 id='status-10-rate-limited'>Status 10: Rate Limited</h3>
+<p>If an account sends too many login requests over a period of time.</p>
+<h3 id='status-11-arrrmor'>Status 11: Arrrmor</h3>
 <p>Two-step security for geolocation</p>
-<pre class="highlight plaintext"><code>status = 11
-message = Ye are trying to login from a new location. Please check yer email.
-</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ye are trying to login from a new location. Please check yer email."</span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='successful-responses'>Successful responses</h2><h3 id='partial-success-two-step-required'>Partial-success: Two-Step Required</h3><pre class="highlight plaintext"><code>status = 3
-message = A two-factor authentication code is required to login.
-</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A two-factor authentication code is required to login."</span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='follow-up'>Follow-up:</h4>
+<h3 id='successful-responses'>Successful responses</h3><h3 id='partial-success-two-step-required'>Partial-success: Two-Step Required</h3><pre class="highlight json tab-json"><code><span class="err">/*</span><span class="w"> </span><span class="err">PARTICALLY</span><span class="w"> </span><span class="err">SUCCESSFUL</span><span class="w"> </span><span class="err">LOGIN</span><span class="w"> </span><span class="err">*/</span><span class="w">
+</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A two-factor authentication code is required to login."</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>You must send another request to the login API containing the user-supplied authentication token using the <code>gtoken</code> parameter.  If this token is invalid and/or expired, you will receive another partial-success login.  You must send the username and password again when sending this follow-up request.</p>
-<h3 id='successful-login'>Successful Login</h3><pre class="highlight plaintext"><code>status = 7
-message = Have fun!
-</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Have fun!"</span><span class="p">,</span><span class="w"> </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678abcdefgh"</span><span class="p">,</span><span class="w"> </span><span class="s2">"gameserver"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prod-gs-protected-agent-1.legendofpiratesonline.com"</span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='running-the-client'>Running the Client</h2>
+<h3 id='successful-login'>Successful Login</h3><pre class="highlight json tab-json"><code><span class="err">/*</span><span class="w"> </span><span class="err">SUCCESSFUL</span><span class="w"> </span><span class="err">LOGIN</span><span class="w"> </span><span class="err">*/</span><span class="w">
+</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Have fun!"</span><span class="p">,</span><span class="w"> </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678abcdefgh"</span><span class="p">,</span><span class="w"> </span><span class="s2">"gameserver"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prod-gs-protected-agent-1.legendofpiratesonline.com"</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>You have successfully authenticated with the API.</p>
+
+<p>You have received the following API response and are now able to run the client using the <code>token</code> and <code>gameserver</code> provided.</p>
+<h2 id='running-the-client'>Running the Client</h2>
 <p>Upon receiving a status 7 response, you will have all of the proper information you need to login on the client.</p>
 
 <p>To login on the client, set the following environment variables containing the information provided by the login API and then run the client.</p>
+<pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">os</span>
 
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">'TLOPO_GAMESERVER'</span><span class="p">]</span> <span class="o">=</span> <span class="n">url_from_server</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">'TLOPO_PLAYCOOKIE'</span><span class="p">]</span> <span class="o">=</span> <span class="n">cookie_from_server</span>
+
+<span class="c"># Open client here.</span>
+</code></pre>
 <table><thead>
 <tr>
 <th>Environment Variable</th>
@@ -437,27 +484,16 @@ message = Have fun!
 <td>The token provided by the API.</td>
 </tr>
 </tbody></table>
-<h1 id='errors'>Errors</h1>
-<p>The The Legend of Pirates Online API uses the following error codes:</p>
+<h1 id='conclusion'>Conclusion</h1>
+<p>Do you have a suggestion for an API?  Send us an email at <a href="mailto:support@piratesonline.co">support@piratesonline.co</a></p>
 
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Meaning</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
-</tr>
-</tbody></table>
+<p>Would you like to make a contribution to our API doc?  <a href="https://github.com/TheLegendofPiratesOnline/documentation/">Check us out on GitHub</a>!</p>
 
       </div>
       <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="python">python</a>
+          </div>
       </div>
     </div>
   </body>
