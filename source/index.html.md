@@ -62,7 +62,7 @@ params = urllib.urlencode({'username': 'your_username_here',
 headers = {'Content-Type': 'application/x-www-form-urlencoded'}
 
 r = requests.post('https://api.piratesonline.co/login/', data=params, headers=headers)
-print r.json()
+print(r.json())
 ```
 
 | Params     | Description                                           |
@@ -85,7 +85,7 @@ params = urllib.urlencode({'username' : 'your_username_here',
 headers = {'Content-Type': 'application/x-www-form-urlencoded'}
 
 r = requests.post('https://api.piratesonline.co/login/', data=params, headers=headers)
-print r.json()
+print(r.json())
 ```
 
 | Params     | Description                                           |
@@ -112,7 +112,7 @@ The API will respond in one of 12 ways.
 | Email Unverified  |     8      | This account's email has not been verified.          |
 | No Playtime       |     9      | This account does not have an active playtime.       |
 | Rate Limited      |     10     | This account is trying to log in too quickly.        |
-| Arrrmor           |     11     | This account is logging in from an unknown loaction. |
+| Arrrmor           |     11     | This account is logging in from an unknown location. |
 
 
 ### Failure responses
@@ -177,7 +177,7 @@ Two-step security for geolocation
 ### Partial-success: Two-Step Required
 
 ```json
-/* PARTICALLY SUCCESSFUL LOGIN */
+/* PARTIALLY SUCCESSFUL LOGIN */
 {"status": "3", "message": "A two-factor authentication code is required to login."}
 ```
 
