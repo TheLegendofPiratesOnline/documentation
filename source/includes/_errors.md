@@ -1,9 +1,5 @@
-# Errors
+# Conclusion
 
-The The Legend of Pirates Online API uses the following error codes:
+Do you have a suggestion for an API?  Send us an email at [support@piratesonline.co](mailto:support@piratesonline.co)
 
-
-Error Code | Meaning
----------- | -------
-500 | Internal Server Error -- We had a problem with our server. Try again later.
-503 | Service Unavailable -- We're temporarily offline for maintenance. Please try again later.
+Would you like to make a contribution to our API doc?  [Check us out on GitHub](https://github.com/TheLegendofPiratesOnline/documentation/)!
