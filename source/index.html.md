@@ -15,7 +15,19 @@ search: true
 
 # Introduction
 
-Welcome to The Legend of Pirates Online API! You can use our API to access The Legend of Pirates Online API endpoints, which can get information on news, servers and system status.
+```python
+# Due to the SSL on our API, you must use
+# Python 3 in order to make any API requests.
+
+# If you don't, you'll get this nasty error:
+# requests.exceptions.SSLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:661)
+```
+
+Welcome to The Legend of Pirates Online API!
+
+You can use our API to access The Legend of Pirates Online API endpoints, which can get information on news, servers and system status.
+
+All API requests must be made using `HTTPS`.
 
 # Authentication
 
@@ -49,7 +61,7 @@ params = urllib.urlencode({'username': 'your_username_here',
                            'password': 'your_password_here'})
 headers = {'Content-Type': 'application/x-www-form-urlencoded'}
 
-r = requests.post('http://api.tlopolocal.test:8000/login/', data=params, headers=headers)
+r = requests.post('https://api.piratesonline.co/login/', data=params, headers=headers)
 print r.json()
 ```
 
@@ -72,7 +84,7 @@ params = urllib.urlencode({'username' : 'your_username_here',
                            'gtoken'   : 'your_2fa_token_here'})
 headers = {'Content-Type': 'application/x-www-form-urlencoded'}
 
-r = requests.post('http://api.tlopolocal.test:8000/login/', data=params, headers=headers)
+r = requests.post('https://api.piratesonline.co/login/', data=params, headers=headers)
 print r.json()
 ```
 
