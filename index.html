@@ -246,8 +246,17 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1>
-<p>Welcome to The Legend of Pirates Online API! You can use our API to access The Legend of Pirates Online API endpoints, which can get information on news, servers and system status.</p>
+        <h1 id='introduction'>Introduction</h1><pre class="highlight python tab-python"><code><span class="c"># Due to the SSL on our API, you must use</span>
+<span class="c"># Python 3 in order to make any API requests.</span>
+
+<span class="c"># If you don't, you'll get this nasty error:</span>
+<span class="c"># requests.exceptions.SSLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:661)</span>
+</code></pre>
+<p>Welcome to The Legend of Pirates Online API!</p>
+
+<p>You can use our API to access The Legend of Pirates Online API endpoints, which can get information on news, servers and system status.</p>
+
+<p>All API requests must be made using <code>HTTPS</code>.</p>
 <h1 id='authentication'>Authentication</h1>
 <ul>
 <li>Launcher POSTs a request to the API URL.
@@ -281,7 +290,7 @@
                            <span class="s">'password'</span><span class="p">:</span> <span class="s">'your_password_here'</span><span class="p">})</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/x-www-form-urlencoded'</span><span class="p">}</span>
 
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'http://api.tlopolocal.test:8000/login/'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'https://api.piratesonline.co/login/'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
 <span class="k">print</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
 <table><thead>
@@ -310,7 +319,7 @@
                            <span class="s">'gtoken'</span>   <span class="p">:</span> <span class="s">'your_2fa_token_here'</span><span class="p">})</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/x-www-form-urlencoded'</span><span class="p">}</span>
 
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'http://api.tlopolocal.test:8000/login/'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'https://api.piratesonline.co/login/'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
 <span class="k">print</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
 <table><thead>
