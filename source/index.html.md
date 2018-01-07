@@ -1,9 +1,11 @@
 ---
 title: API Reference
 
+language_tabs:
+  - python
 
 toc_footers:
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+  - <a href='https://piratesonline.co/'>Return to main website.</a>
 
 includes:
   - errors
@@ -13,32 +15,66 @@ search: true
 
 # Introduction
 
-Welcome to the The Legend of Pirates Online API! You can use our API to access The Legend of Pirates Online API endpoints, which can get information on news, servers and system status.
+Welcome to The Legend of Pirates Online API! You can use our API to access The Legend of Pirates Online API endpoints, which can get information on news, servers and system status.
 
 # Authentication
 
-* Launcher POSTs a request to `https://api.piratesonline.co/login/`.
+* Launcher POSTs a request to the API URL.
+  * `https://api.piratesonline.co/login/`.
 * Web responds in one of multiple ways.
 * Launcher interprets web response and launches game if successful.
   * API will respond in JSON format.
 
 
 ## Contacting the API
-
 ### Headers
-All calls to the API should be made via a HTTP ```POST``` to ```https://api.piratesonline.co/login/``` using an urlencoded form. To do this, add ```'Content-type': 'application/x-www-form-urlencoded'``` to your headers.
+All calls to the API should be made via a HTTP ```POST``` to ```https://api.piratesonline.co/login/``` using an urlencoded form.  To do this, add ```'Content-type': 'application/x-www-form-urlencoded'``` to your headers.
 
 ### Parameters
-- For all practical uses, all API requests should be made using the general account parameters.  If the API responds with a request for a two-factor token, submit a new request containing the two-factor parameter.
-- The following tables outline the required parameters for both cases:
+- For all practical uses, all API requests should be made using the general account parameters.
+- If the API responds with a request for a two-factor token, submit a new request containing the two-factor parameter.
 
-#### General Accounts
+The following tables outline the required parameters for both cases:
+
+### General Accounts
+
+```python
+# ** General Account Login **
+
+# https://pypi.python.org/pypi/requests
+import requests 
+import urllib
+
+params = urllib.urlencode({'username': 'your_username_here',
+                           'password': 'your_password_here'})
+headers = {'Content-Type': 'application/x-www-form-urlencoded'}
+
+r = requests.post('http://api.tlopolocal.test:8000/login/', data=params, headers=headers)
+print r.json()
+```
+
 | Params     | Description                                           |
 |------------|-------------------------------------------------------|
 | username   | The username of the account you desire to login to.   |
 | password   | The password of the account you desire to login to.   |
 
-#### Account with Two-factor Authentication
+### Account with Two-factor Authentication
+
+```python
+# ** 2FA Account Login **
+
+# https://pypi.python.org/pypi/requests
+import requests
+import urllib
+
+params = urllib.urlencode({'username' : 'your_username_here',
+                           'password' : 'your_password_here',
+                           'gtoken'   : 'your_2fa_token_here'})
+headers = {'Content-Type': 'application/x-www-form-urlencoded'}
+
+r = requests.post('http://api.tlopolocal.test:8000/login/', data=params, headers=headers)
+print r.json()
+```
 
 | Params     | Description                                           |
 |------------|-------------------------------------------------------|
@@ -47,7 +83,7 @@ All calls to the API should be made via a HTTP ```POST``` to ```https://api.pira
 | gtoken     | The account's active two-factor authentication token. |
 
 
-### API Response
+## API Response
 
 The API will respond in one of 12 ways.
 
@@ -67,113 +103,99 @@ The API will respond in one of 12 ways.
 | Arrrmor           |     11     | This account is logging in from an unknown loaction. |
 
 
-## Failure responses
+### Failure responses
 If any one of these responses are received, the login process has ended with an error. The launcher will notify the player that an error has occurred and prompt them with the reason.
 
-### Invalid username/password
+```json
+/* ACTUAL PROD JSON RESPONSES */
+
+/* INVALID USERNAME/PASSWORD */
+{"status": "1",
+ "message": "Incorrect username and/or password."}
+
+/* ACCOUNT BANNED */
+{"status": "4",
+ "message": "This account is on hold. Please login to www.piratesonline.co/account/banned_id/ for more information."}
+
+/* SERVER CLOSED */
+{"status": "5",
+ "message": "The Legend of Pirates Online is currently closed for an update. We'll be back up soon!"}
+
+/* UNVERIFIED EMAIL */
+{"status": "8",
+ "message": "This account's email hasn't been verified yet. Please check yer email."}
+
+/* NO ACTIVE SESSION (DEPRECATED) */
+{"status": "9",
+ "message": "Ye do not have an active session right now.  Ye can sign up for one on our website!"}
+
+/* RATE LIMITED */
+{"status": "10",
+ "message": "Ye are trying to login too fast.  Please try again in one minute."}
+
+/* ARRMOR */
+{"status": "11",
+ "message": "Ye are trying to login from a new location. Please check yer email."}
+```
+
+### Status 1: Invalid username/password
 The submitted Username/Password was incorrect.
 
-```
-status = 1
-message = Incorrect username and/or password.
-```
-```json
-{"status": "1", "message": "Incorrect username and/or password."}
-```
-
-### Account Banned
+### Status 4: Account Banned
 This account is banned or disabled.
 
-```
-status = 4
-message = This account is on hold. Please login to www.piratesonline.co/account/banned_id/ for more information.
-```
-```json
-{"status": "4", "message": "This account is on hold. Please login to www.piratesonline.co/account/banned_id/ for more information."}
-```
+### Status 5: Server Closed
+The servers are currently closed for an update.
 
-### Server Closed
-The server is closed.
-
-```
-status = 5
-message = The Legend of Pirates Online is currently closed for an update. We'll be back up soon!
-```
-```json
-{"status": "5", "message": "The Legend of Pirates Online is currently closed for an update. We'll be back up soon!"}
-```
-
-### Email Unverified
+### Status 8: Email Unverified
 This account's email hasn't been verified yet.
 
-```
-status = 8
-message = This account's email hasn't been verified yet. Please check yer email.
-```
-```json
-{"status": "8", "message": "This account's email hasn't been verified yet. Please check yer email."}
-```
+### Status 9: No Active Playtime
+**Deprecated** No active playtime for the account.
 
-### No Active Playtime
-**Deprecated** no active playtime for the account
+### Status 10: Rate Limited
+If an account sends too many login requests over a period of time.
 
-```
-status = 9
-message = Ye do not have an active session right now.  Ye can sign up for one on our website!
-```
-```json
-{"status": "9", "message": "Ye do not have an active session right now.  Ye can sign up for one on our website!"}
-```
-
-### Rate Limited
-If an account sends too many login requests over a period of time
-
-```
-status = 10
-message = Ye are trying to login too fast.  Please try again in one minute.
-```
-```json
-{"status": "10", "message": "Ye are trying to login too fast.  Please try again in one minute."}
-```
-
-### Arrrmor
+### Status 11: Arrrmor
 Two-step security for geolocation
 
-```
-status = 11
-message = Ye are trying to login from a new location. Please check yer email.
-```
-```json
-{"status": "11", "message": "Ye are trying to login from a new location. Please check yer email."}
-```
 
-## Successful responses
+### Successful responses
 
 ### Partial-success: Two-Step Required
-```
-status = 3
-message = A two-factor authentication code is required to login.
-```
+
 ```json
+/* PARTICALLY SUCCESSFUL LOGIN */
 {"status": "3", "message": "A two-factor authentication code is required to login."}
 ```
 
-#### Follow-up:
 You must send another request to the login API containing the user-supplied authentication token using the ```gtoken``` parameter.  If this token is invalid and/or expired, you will receive another partial-success login.  You must send the username and password again when sending this follow-up request.
 
 ### Successful Login
-```
-status = 7
-message = Have fun!
-```
+
 ```json
+/* SUCCESSFUL LOGIN */
 {"status": "7", "message": "Have fun!", "token": "12345678abcdefgh", "gameserver": "prod-gs-protected-agent-1.legendofpiratesonline.com"}
 ```
 
+You have successfully authenticated with the API.
+
+You have received the following API response and are now able to run the client using the `token` and `gameserver` provided.
+
 ## Running the Client
+
 Upon receiving a status 7 response, you will have all of the proper information you need to login on the client.
 
 To login on the client, set the following environment variables containing the information provided by the login API and then run the client.
+
+```python
+import os
+
+os.environ['TLOPO_GAMESERVER'] = url_from_server
+os.environ['TLOPO_PLAYCOOKIE'] = cookie_from_server
+
+# Open client here.
+```
 
 | Environment Variable | Description                         |
 |----------------------|-------------------------------------|
