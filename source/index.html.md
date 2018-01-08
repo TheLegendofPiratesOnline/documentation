@@ -339,7 +339,7 @@ If there is not an active banner, the API will respond an empty JSON object.
 
 ## Ocean API
 
-* `https://api.piratesonline.co/launcher`
+* `https://api.piratesonline.co/shards`
 * Reports the status of each ocean with information on current events, such as an active invasion.
 * Responds in JSON format.
 
@@ -406,7 +406,7 @@ This feature is still under development.  When invasions are released we will up
 # System Services
 
 ## Online Status API
-* `https://api.piratesonline.co/launcher`
+* `https://api.piratesonline.co/system/status`
 * Returns information regarding each of TLOPO's services and their online status.
 * Responds in JSON format.
 
