@@ -192,7 +192,6 @@ You must send another request to the login API containing the user-supplied auth
 > JSON Response - Success
 
 ```json
-/* SUCCESSFUL LOGIN */
 {"status": "7",
  "message": "Have fun!",
  "token": "12345678abcdefgh",
@@ -280,8 +279,8 @@ By default, the URL will respond with the latest 5 news posts.  If you wish to r
 ### API Response
 The API will respond a list of JSON objects.  Each JSON object will have the following keys:
 
+> JSON Response
 ```json
-/* EXAMPLE RESPONSE */
 {"url": "https://piratesonline.co/news/post/126/",
  "date": "2017-12-13 19:00:00",
  "author": "John Carver",
