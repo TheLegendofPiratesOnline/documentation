@@ -291,7 +291,7 @@
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/x-www-form-urlencoded'</span><span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'https://api.piratesonline.co/login/'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
-<span class="k">print</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre>
 <table><thead>
 <tr>
@@ -320,7 +320,7 @@
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/x-www-form-urlencoded'</span><span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'https://api.piratesonline.co/login/'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
-<span class="k">print</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre>
 <table><thead>
 <tr>
@@ -409,7 +409,7 @@
 <tr>
 <td>Arrrmor</td>
 <td>11</td>
-<td>This account is logging in from an unknown loaction.</td>
+<td>This account is logging in from an unknown location.</td>
 </tr>
 </tbody></table>
 <h3 id='failure-responses'>Failure responses</h3>
@@ -417,31 +417,31 @@
 <pre class="highlight json tab-json"><code><span class="err">/*</span><span class="w"> </span><span class="err">ACTUAL</span><span class="w"> </span><span class="err">PROD</span><span class="w"> </span><span class="err">JSON</span><span class="w"> </span><span class="err">RESPONSES</span><span class="w"> </span><span class="err">*/</span><span class="w">
 
 </span><span class="err">/*</span><span class="w"> </span><span class="err">INVALID</span><span class="w"> </span><span class="err">USERNAME/PASSWORD</span><span class="w"> </span><span class="err">*/</span><span class="w">
-</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Incorrect username and/or password."</span><span class="p">}</span><span class="w">
 
 </span><span class="err">/*</span><span class="w"> </span><span class="err">ACCOUNT</span><span class="w"> </span><span class="err">BANNED</span><span class="w"> </span><span class="err">*/</span><span class="w">
-</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This account is on hold. Please login to www.piratesonline.co/account/banned_id/ for more information."</span><span class="p">}</span><span class="w">
 
 </span><span class="err">/*</span><span class="w"> </span><span class="err">SERVER</span><span class="w"> </span><span class="err">CLOSED</span><span class="w"> </span><span class="err">*/</span><span class="w">
-</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Legend of Pirates Online is currently closed for an update. We'll be back up soon!"</span><span class="p">}</span><span class="w">
 
 </span><span class="err">/*</span><span class="w"> </span><span class="err">UNVERIFIED</span><span class="w"> </span><span class="err">EMAIL</span><span class="w"> </span><span class="err">*/</span><span class="w">
-</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8"</span><span class="p">,</span><span class="w">
+</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This account's email hasn't been verified yet. Please check yer email."</span><span class="p">}</span><span class="w">
 
 </span><span class="err">/*</span><span class="w"> </span><span class="err">NO</span><span class="w"> </span><span class="err">ACTIVE</span><span class="w"> </span><span class="err">SESSION</span><span class="w"> </span><span class="err">(DEPRECATED)</span><span class="w"> </span><span class="err">*/</span><span class="w">
-</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9"</span><span class="p">,</span><span class="w">
+</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ye do not have an active session right now.  Ye can sign up for one on our website!"</span><span class="p">}</span><span class="w">
 
 </span><span class="err">/*</span><span class="w"> </span><span class="err">RATE</span><span class="w"> </span><span class="err">LIMITED</span><span class="w"> </span><span class="err">*/</span><span class="w">
-</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ye are trying to login too fast.  Please try again in one minute."</span><span class="p">}</span><span class="w">
 
 </span><span class="err">/*</span><span class="w"> </span><span class="err">ARRMOR</span><span class="w"> </span><span class="err">*/</span><span class="w">
-</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w">
+</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ye are trying to login from a new location. Please check yer email."</span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='status-1-invalid-username-password'>Status 1: Invalid username/password</h3>
 <p>The submitted Username/Password was incorrect.</p>
@@ -457,7 +457,7 @@
 <p>If an account sends too many login requests over a period of time.</p>
 <h3 id='status-11-arrrmor'>Status 11: Arrrmor</h3>
 <p>Two-step security for geolocation</p>
-<h3 id='successful-responses'>Successful responses</h3><h3 id='partial-success-two-step-required'>Partial-success: Two-Step Required</h3><pre class="highlight json tab-json"><code><span class="err">/*</span><span class="w"> </span><span class="err">PARTICALLY</span><span class="w"> </span><span class="err">SUCCESSFUL</span><span class="w"> </span><span class="err">LOGIN</span><span class="w"> </span><span class="err">*/</span><span class="w">
+<h3 id='successful-responses'>Successful responses</h3><h3 id='partial-success-two-step-required'>Partial-success: Two-Step Required</h3><pre class="highlight json tab-json"><code><span class="err">/*</span><span class="w"> </span><span class="err">PARTIALLY</span><span class="w"> </span><span class="err">SUCCESSFUL</span><span class="w"> </span><span class="err">LOGIN</span><span class="w"> </span><span class="err">*/</span><span class="w">
 </span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A two-factor authentication code is required to login."</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>You must send another request to the login API containing the user-supplied authentication token using the <code>gtoken</code> parameter.  If this token is invalid and/or expired, you will receive another partial-success login.  You must send the username and password again when sending this follow-up request.</p>
