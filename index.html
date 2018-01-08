@@ -494,8 +494,7 @@
 <blockquote>
 <p>JSON Response - Success</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="err">/*</span><span class="w"> </span><span class="err">SUCCESSFUL</span><span class="w"> </span><span class="err">LOGIN</span><span class="w"> </span><span class="err">*/</span><span class="w">
-</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w">
  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Have fun!"</span><span class="p">,</span><span class="w">
  </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678abcdefgh"</span><span class="p">,</span><span class="w">
  </span><span class="s2">"gameserver"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prod-gs-protected-agent-1.legendofpiratesonline.com"</span><span class="p">}</span><span class="w">
@@ -583,13 +582,18 @@
 <p>By default, the URL will respond with the latest 5 news posts.  If you wish to receive a different amount, such as the latest 10, you must submit your GET request with the following structure: <code>https://api.piratesonline.co/news/feed/10</code>.</p>
 <h3 id='api-response-3'>API Response</h3>
 <p>The API will respond a list of JSON objects.  Each JSON object will have the following keys:</p>
-<pre class="highlight json tab-json"><code><span class="err">/*</span><span class="w"> </span><span class="err">EXAMPLE</span><span class="w"> </span><span class="err">RESPONSE</span><span class="w"> </span><span class="err">*/</span><span class="w">
-</span><span class="p">{</span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://piratesonline.co/news/post/126/"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-13 19:00:00"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Carver"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">126</span><span class="p">,</span><span class="w">
- </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Twelve Days of Celebration!"</span><span class="p">}</span><span class="w">
-</span></code></pre>
+
+<blockquote>
+<p>JSON Response
+<code>json
+{&quot;url&quot;: &quot;https://piratesonline.co/news/post/126/&quot;,
+ &quot;date&quot;: &quot;2017-12-13 19:00:00&quot;,
+ &quot;author&quot;: &quot;John Carver&quot;,
+ &quot;id&quot;: 126,
+ &quot;title&quot;: &quot;Twelve Days of Celebration!&quot;}
+</code></p>
+</blockquote>
+
 <table><thead>
 <tr>
 <th>Key</th>
