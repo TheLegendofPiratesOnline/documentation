@@ -245,7 +245,7 @@ To contact the API, submit a HTTPS GET request to the API URL.
 import requests 
 
 r = requests.get('https://api.piratesonline.co/news/feed/')
-print r.text
+print(r.text)
 ```
 
 By default, the URL will respond with the latest 5 news posts.  If you wish to receive a different amount, such as the latest 10, you must submit your GET request with the following structure: `https://api.piratesonline.co/news/feed/10`.
@@ -286,7 +286,7 @@ To contact the API, submit a HTTPS GET request to the API URL.
 import requests 
 
 r = requests.get('https://api.piratesonline.co/news/notification/')
-print r.text
+print(r.text)
 ```
 
 ### API Response
@@ -328,7 +328,7 @@ To contact the API, submit a HTTPS GET request to the API URL.
 import requests 
 
 r = requests.get('https://api.piratesonline.co/launcher/')
-print r.text
+print(r.text)
 ```
 
 ### API Response
@@ -355,7 +355,7 @@ To contact the API, submit a HTTPS GET request to the API URL.
 import requests 
 
 r = requests.get('https://api.piratesonline.co/shards/')
-print r.text
+print(r.text)
 ```
 
 ### API Response
