@@ -391,7 +391,7 @@ Each of these keys will have the value of another JSON object.  That object cont
                "population": 271}}
 ```
 
-Fleet and Invasion both will contain a JSON object giving information regarding each of their statuses respectively.
+`fleet` and `invasion` both will contain a JSON object containing information regarding each of their statuses respectively.
 
 ### Fleets
 |      Key       | Value                                              |
