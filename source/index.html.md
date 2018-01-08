@@ -262,13 +262,13 @@ The API will respond a list of JSON objects.  Each JSON object will have the fol
  "title": "Twelve Days of Celebration!"}
 ```
 
-|      Key      | Value                                         |
-|---------------|-----------------------------------------------|
-| url           | This is the direct URL to the blog post.      |
-| date          | This is the date the blog post was published. |
-| author        | This is the author of the blog post.          |
-| id            | This is the blog post's id/number.            |
-| title         | This is the title of the blog post.           |
+|      Key      | Value                                                  |
+|---------------|--------------------------------------------------------|
+| url           | This is the direct URL to the blog post.               |
+| date          | This is the date and time the blog post was published. |
+| author        | This is the author of the blog post.                   |
+| id            | This is the blog post's id/number.                     |
+| title         | This is the title of the blog post.                    |
 
 ## News Notification
 
@@ -301,13 +301,10 @@ If there is an active banner, the API will respond a JSON object with the follow
  "datetime": "2018-01-07 19:33"}
 ```
 
-|      Key      | Value                                         |
-|---------------|-----------------------------------------------|
-| url           | This is the direct URL to the blog post.      |
-| date          | This is the date the blog post was published. |
-| author        | This is the author of the blog post.          |
-| id            | This is the blog post's id/number.            |
-| title         | This is the title of the blog post.           |
+|      Key      | Value                                               |
+|---------------|-----------------------------------------------------|
+| message       | This is the message inside the banner.              |
+| datetime      | This is the date and time the banner was published. |
 
 If there is not an active banner, the API will respond an empty JSON object.
 
