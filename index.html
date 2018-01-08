@@ -225,13 +225,7 @@
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#contacting-the-api" class="toc-h2 toc-link" data-title="Contacting the API">Contacting the API</a>
-                  </li>
-                  <li>
-                    <a href="#api-response" class="toc-h2 toc-link" data-title="API Response">API Response</a>
-                  </li>
-                  <li>
-                    <a href="#running-the-client" class="toc-h2 toc-link" data-title="Running the Client">Running the Client</a>
+                    <a href="#login-api" class="toc-h2 toc-link" data-title="Login API">Login API</a>
                   </li>
               </ul>
           </li>
@@ -239,7 +233,29 @@
             <a href="#blog-posts" class="toc-h1 toc-link" data-title="Blog Posts">Blog Posts</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#news-feed" class="toc-h2 toc-link" data-title="News Feed">News Feed</a>
+                    <a href="#launcher-news-api" class="toc-h2 toc-link" data-title="Launcher News API">Launcher News API</a>
+                  </li>
+                  <li>
+                    <a href="#news-feed-api" class="toc-h2 toc-link" data-title="News Feed API">News Feed API</a>
+                  </li>
+                  <li>
+                    <a href="#news-notification-api" class="toc-h2 toc-link" data-title="News Notification API">News Notification API</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#gameserver" class="toc-h1 toc-link" data-title="Gameserver">Gameserver</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#ocean-api" class="toc-h2 toc-link" data-title="Ocean API">Ocean API</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#system-services" class="toc-h1 toc-link" data-title="System Services">System Services</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#online-status-api" class="toc-h2 toc-link" data-title="Online Status API">Online Status API</a>
                   </li>
               </ul>
           </li>
@@ -265,15 +281,15 @@
 <p>You can use our API to access The Legend of Pirates Online API endpoints, which can get information on news, servers and system status.</p>
 
 <p>All API requests must be made using <code>HTTPS</code>, <strong>not</strong> <code>HTTP</code>.</p>
-<h1 id='authentication'>Authentication</h1>
+<h1 id='authentication'>Authentication</h1><h2 id='login-api'>Login API</h2>
 <ul>
 <li><code>https://api.piratesonline.co/login/</code></li>
 <li>Authenticates invoker then returns gameserver information to login on the TLOPO client.</li>
 <li>Launcher uses HTTP <code>POST</code> to send a request to the API.</li>
 <li>Responds in JSON format.</li>
 </ul>
-<h2 id='contacting-the-api'>Contacting the API</h2><h3 id='headers'>Headers</h3>
-<p>All calls to the API should be made via a HTTP <code>POST</code> to <code>https://api.piratesonline.co/login/</code> using an urlencoded form.  To do this, add <code>&#39;Content-type&#39;: &#39;application/x-www-form-urlencoded&#39;</code> to your headers.</p>
+<h3 id='headers'>Headers</h3>
+<p>All calls to the API should be made via a HTTP <code>POST</code> to <code>https://api.piratesonline.co/login/</code> using an urlencoded form.  To do this, add <code>&#39;Content-type&#39; : &#39;application/x-www-form-urlencoded&#39;</code> to your headers.</p>
 <h3 id='parameters'>Parameters</h3>
 <ul>
 <li>For all practical uses, all API requests should be made using the general account parameters.</li>
@@ -281,18 +297,20 @@
 </ul>
 
 <p>The following tables outline the required parameters for both cases:</p>
-<h3 id='general-accounts'>General Accounts</h3><pre class="highlight python tab-python"><code><span class="c"># ** General Account Login **</span>
-
-<span class="c"># https://pypi.python.org/pypi/requests</span>
+<h3 id='general-accounts'>General Accounts</h3>
+<blockquote>
+<p>Sample Code - General Account</p>
+</blockquote>
+<pre class="highlight python tab-python"><code><span class="c"># https://pypi.python.org/pypi/requests</span>
 <span class="kn">import</span> <span class="nn">requests</span> 
 <span class="kn">import</span> <span class="nn">urllib</span>
 
-<span class="n">params</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">({</span><span class="s">'username'</span><span class="p">:</span> <span class="s">'your_username_here'</span><span class="p">,</span>
-                           <span class="s">'password'</span><span class="p">:</span> <span class="s">'your_password_here'</span><span class="p">})</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/x-www-form-urlencoded'</span><span class="p">}</span>
+<span class="n">params</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">({</span><span class="s">'username'</span> <span class="p">:</span> <span class="s">'your_username_here'</span><span class="p">,</span>
+                           <span class="s">'password'</span> <span class="p">:</span> <span class="s">'your_password_here'</span><span class="p">})</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Content-Type'</span> <span class="p">:</span> <span class="s">'application/x-www-form-urlencoded'</span><span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'https://api.piratesonline.co/login/'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
-<span class="k">print</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre>
 <table><thead>
 <tr>
@@ -309,19 +327,21 @@
 <td>The password of the account you desire to login to.</td>
 </tr>
 </tbody></table>
-<h3 id='account-with-two-factor-authentication'>Account with Two-factor Authentication</h3><pre class="highlight python tab-python"><code><span class="c"># ** 2FA Account Login **</span>
-
-<span class="c"># https://pypi.python.org/pypi/requests</span>
+<h3 id='account-with-two-factor-authentication'>Account with Two-factor Authentication</h3>
+<blockquote>
+<p>Sample Code - 2FA Account</p>
+</blockquote>
+<pre class="highlight python tab-python"><code><span class="c"># https://pypi.python.org/pypi/requests</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">import</span> <span class="nn">urllib</span>
 
 <span class="n">params</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">({</span><span class="s">'username'</span> <span class="p">:</span> <span class="s">'your_username_here'</span><span class="p">,</span>
                            <span class="s">'password'</span> <span class="p">:</span> <span class="s">'your_password_here'</span><span class="p">,</span>
                            <span class="s">'gtoken'</span>   <span class="p">:</span> <span class="s">'your_2fa_token_here'</span><span class="p">})</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/x-www-form-urlencoded'</span><span class="p">}</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Content-Type'</span> <span class="p">:</span> <span class="s">'application/x-www-form-urlencoded'</span><span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'https://api.piratesonline.co/login/'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
-<span class="k">print</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre>
 <table><thead>
 <tr>
@@ -342,7 +362,9 @@
 <td>The account&#39;s active two-factor authentication token.</td>
 </tr>
 </tbody></table>
-<h2 id='api-response'>API Response</h2>
+<h3 id='security-note'>Security Note</h3>
+<p>We strongly recommend requiring players to enter their username and password each time they use a launcher.  If an unauthorized user gains access to another player&#39;s account and violates the Terms of Service, the account owner will still be held responsible.</p>
+<h3 id='api-response'>API Response</h3>
 <p>The API will respond in one of 12 ways.</p>
 
 <table><thead>
@@ -410,39 +432,41 @@
 <tr>
 <td>Arrrmor</td>
 <td>11</td>
-<td>This account is logging in from an unknown loaction.</td>
+<td>This account is logging in from an unknown location.</td>
 </tr>
 </tbody></table>
 <h3 id='failure-responses'>Failure responses</h3>
 <p>If any one of these responses are received, the login process has ended with an error. The launcher will notify the player that an error has occurred and prompt them with the reason.</p>
-<pre class="highlight json tab-json"><code><span class="err">/*</span><span class="w"> </span><span class="err">ACTUAL</span><span class="w"> </span><span class="err">PROD</span><span class="w"> </span><span class="err">JSON</span><span class="w"> </span><span class="err">RESPONSES</span><span class="w"> </span><span class="err">*/</span><span class="w">
 
-</span><span class="err">/*</span><span class="w"> </span><span class="err">INVALID</span><span class="w"> </span><span class="err">USERNAME/PASSWORD</span><span class="w"> </span><span class="err">*/</span><span class="w">
-</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+<blockquote>
+<p>JSON Responses</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">/*</span><span class="w"> </span><span class="err">INVALID</span><span class="w"> </span><span class="err">USERNAME/PASSWORD</span><span class="w"> </span><span class="err">*/</span><span class="w">
+</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Incorrect username and/or password."</span><span class="p">}</span><span class="w">
 
 </span><span class="err">/*</span><span class="w"> </span><span class="err">ACCOUNT</span><span class="w"> </span><span class="err">BANNED</span><span class="w"> </span><span class="err">*/</span><span class="w">
-</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This account is on hold. Please login to www.piratesonline.co/account/banned_id/ for more information."</span><span class="p">}</span><span class="w">
 
 </span><span class="err">/*</span><span class="w"> </span><span class="err">SERVER</span><span class="w"> </span><span class="err">CLOSED</span><span class="w"> </span><span class="err">*/</span><span class="w">
-</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Legend of Pirates Online is currently closed for an update. We'll be back up soon!"</span><span class="p">}</span><span class="w">
 
 </span><span class="err">/*</span><span class="w"> </span><span class="err">UNVERIFIED</span><span class="w"> </span><span class="err">EMAIL</span><span class="w"> </span><span class="err">*/</span><span class="w">
-</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8"</span><span class="p">,</span><span class="w">
+</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This account's email hasn't been verified yet. Please check yer email."</span><span class="p">}</span><span class="w">
 
 </span><span class="err">/*</span><span class="w"> </span><span class="err">NO</span><span class="w"> </span><span class="err">ACTIVE</span><span class="w"> </span><span class="err">SESSION</span><span class="w"> </span><span class="err">(DEPRECATED)</span><span class="w"> </span><span class="err">*/</span><span class="w">
-</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9"</span><span class="p">,</span><span class="w">
+</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ye do not have an active session right now.  Ye can sign up for one on our website!"</span><span class="p">}</span><span class="w">
 
 </span><span class="err">/*</span><span class="w"> </span><span class="err">RATE</span><span class="w"> </span><span class="err">LIMITED</span><span class="w"> </span><span class="err">*/</span><span class="w">
-</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ye are trying to login too fast.  Please try again in one minute."</span><span class="p">}</span><span class="w">
 
 </span><span class="err">/*</span><span class="w"> </span><span class="err">ARRMOR</span><span class="w"> </span><span class="err">*/</span><span class="w">
-</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w">
+</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ye are trying to login from a new location. Please check yer email."</span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='status-1-invalid-username-password'>Status 1: Invalid username/password</h3>
 <p>The submitted Username/Password was incorrect.</p>
@@ -453,25 +477,40 @@
 <h3 id='status-8-email-unverified'>Status 8: Email Unverified</h3>
 <p>This account&#39;s email hasn&#39;t been verified yet.</p>
 <h3 id='status-9-no-active-playtime'>Status 9: No Active Playtime</h3>
-<p><strong>Deprecated</strong> No active playtime for the account.</p>
+<p><strong><em>Deprecated</em></strong> - No active playtime for the account.</p>
 <h3 id='status-10-rate-limited'>Status 10: Rate Limited</h3>
 <p>If an account sends too many login requests over a period of time.</p>
 <h3 id='status-11-arrrmor'>Status 11: Arrrmor</h3>
-<p>Two-step security for geolocation</p>
-<h3 id='successful-responses'>Successful responses</h3><h3 id='partial-success-two-step-required'>Partial-success: Two-Step Required</h3><pre class="highlight json tab-json"><code><span class="err">/*</span><span class="w"> </span><span class="err">PARTICALLY</span><span class="w"> </span><span class="err">SUCCESSFUL</span><span class="w"> </span><span class="err">LOGIN</span><span class="w"> </span><span class="err">*/</span><span class="w">
-</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A two-factor authentication code is required to login."</span><span class="p">}</span><span class="w">
+<p>Two-step security using geolocation data.  Read more <a href="https://piratesonline.co/help/arrrmor/">here</a>.</p>
+<h3 id='successful-responses'>Successful responses</h3><h3 id='partial-success-two-step-required'>Partial-success: Two-Step Required</h3>
+<blockquote>
+<p>JSON Response - Partical Success</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A two-factor authentication code is required to login."</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>You must send another request to the login API containing the user-supplied authentication token using the <code>gtoken</code> parameter.  If this token is invalid and/or expired, you will receive another partial-success login.  You must send the username and password again when sending this follow-up request.</p>
-<h3 id='successful-login'>Successful Login</h3><pre class="highlight json tab-json"><code><span class="err">/*</span><span class="w"> </span><span class="err">SUCCESSFUL</span><span class="w"> </span><span class="err">LOGIN</span><span class="w"> </span><span class="err">*/</span><span class="w">
-</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Have fun!"</span><span class="p">,</span><span class="w"> </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678abcdefgh"</span><span class="p">,</span><span class="w"> </span><span class="s2">"gameserver"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prod-gs-protected-agent-1.legendofpiratesonline.com"</span><span class="p">}</span><span class="w">
+<h3 id='successful-login'>Successful Login</h3>
+<blockquote>
+<p>JSON Response - Success</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">/*</span><span class="w"> </span><span class="err">SUCCESSFUL</span><span class="w"> </span><span class="err">LOGIN</span><span class="w"> </span><span class="err">*/</span><span class="w">
+</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Have fun!"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678abcdefgh"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"gameserver"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prod-gs-protected-agent-1.legendofpiratesonline.com"</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>You have successfully authenticated with the API.</p>
 
 <p>You have received the following API response and are now able to run the client using the <code>token</code> and <code>gameserver</code> provided.</p>
-<h2 id='running-the-client'>Running the Client</h2>
+<h3 id='running-the-client'>Running the Client</h3>
 <p>Upon receiving a status 7 response, you will have all of the proper information you need to login on the client.</p>
 
 <p>To login on the client, set the following environment variables containing the information provided by the login API and then run the client.</p>
+
+<blockquote>
+<p>Sample Code</p>
+</blockquote>
 <pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">os</span>
 
 <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">'TLOPO_GAMESERVER'</span><span class="p">]</span> <span class="o">=</span> <span class="n">url_from_server</span>
@@ -497,23 +536,52 @@
 <h1 id='blog-posts'>Blog Posts</h1>
 <ul>
 <li>Returns information on the latest news.</li>
-<li>Invoked using <code>HTTP GET</code></li>
+<li>All blog posts APIs are invoked using <code>HTTP GET</code></li>
 </ul>
-<h2 id='news-feed'>News Feed</h2>
+<h2 id='launcher-news-api'>Launcher News API</h2>
 <ul>
-<li><code>https://api.piratesonline.co/news/feed/&lt;number_of_posts&gt;</code></li>
-<li>Respons in JSON format.</li>
+<li><code>https://api.piratesonline.co/launcher</code></li>
+<li>Returns a pre-formatted HTML document which is rendered inside TLOPO&#39;s launchers under &quot;Game News&quot;.
+
+<ul>
+<li>This document contains the latest blog posts.</li>
+</ul></li>
 </ul>
 <h3 id='calling-the-api'>Calling the API</h3>
 <p>To contact the API, submit a HTTPS GET request to the API URL.</p>
+
+<blockquote>
+<p>Sample Code</p>
+</blockquote>
+<pre class="highlight python tab-python"><code><span class="c"># https://pypi.python.org/pypi/requests</span>
+<span class="kn">import</span> <span class="nn">requests</span> 
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.piratesonline.co/launcher/'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre><h3 id='api-response-2'>API Response</h3>
+<p>The API will respond with a pre-formatted HTML document.  This API is used inside TLOPO&#39;s launchers to render the 10 most recent blog posts.</p>
+
+<p>The HTML responded will not contain any kind of background.  The intention is for our launchers to overlay this HTML on the &#39;Game News&#39; section, thus having a background provided there.</p>
+<h2 id='news-feed-api'>News Feed API</h2>
+<ul>
+<li><code>https://api.piratesonline.co/news/feed/&lt;number_of_posts&gt;</code></li>
+<li>Returns the latest news posts.</li>
+<li>Responds in JSON format.</li>
+</ul>
+<h3 id='calling-the-api-2'>Calling the API</h3>
+<p>To contact the API, submit a HTTPS GET request to the API URL.</p>
+
+<blockquote>
+<p>Sample Code</p>
+</blockquote>
 <pre class="highlight python tab-python"><code><span class="c"># https://pypi.python.org/pypi/requests</span>
 <span class="kn">import</span> <span class="nn">requests</span> 
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.piratesonline.co/news/feed/'</span><span class="p">)</span>
-<span class="k">print</span> <span class="n">r</span><span class="o">.</span><span class="n">text</span>
+<span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre>
 <p>By default, the URL will respond with the latest 5 news posts.  If you wish to receive a different amount, such as the latest 10, you must submit your GET request with the following structure: <code>https://api.piratesonline.co/news/feed/10</code>.</p>
-<h3 id='api-response-2'>API Response</h3>
+<h3 id='api-response-3'>API Response</h3>
 <p>The API will respond a list of JSON objects.  Each JSON object will have the following keys:</p>
 <pre class="highlight json tab-json"><code><span class="err">/*</span><span class="w"> </span><span class="err">EXAMPLE</span><span class="w"> </span><span class="err">RESPONSE</span><span class="w"> </span><span class="err">*/</span><span class="w">
 </span><span class="p">{</span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://piratesonline.co/news/post/126/"</span><span class="p">,</span><span class="w">
@@ -529,16 +597,12 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>url</td>
-<td>This is the direct URL to the blog post.</td>
+<td>author</td>
+<td>This is the author of the blog post.</td>
 </tr>
 <tr>
 <td>date</td>
-<td>This is the date the blog post was published.</td>
-</tr>
-<tr>
-<td>author</td>
-<td>This is the author of the blog post.</td>
+<td>This is the date and time the blog post was published.</td>
 </tr>
 <tr>
 <td>id</td>
@@ -548,9 +612,323 @@
 <td>title</td>
 <td>This is the title of the blog post.</td>
 </tr>
+<tr>
+<td>url</td>
+<td>This is the direct URL to the blog post.</td>
+</tr>
+</tbody></table>
+<h2 id='news-notification-api'>News Notification API</h2>
+<ul>
+<li><code>https://api.piratesonline.co/news/notification</code></li>
+<li>Returns the current news banner on the TLOPO website.</li>
+<li>Responds in JSON format.</li>
+</ul>
+<h3 id='calling-the-api-3'>Calling the API</h3>
+<p>To contact the API, submit a HTTPS GET request to the API URL.</p>
+
+<blockquote>
+<p>Sample Code</p>
+</blockquote>
+<pre class="highlight python tab-python"><code><span class="c"># https://pypi.python.org/pypi/requests</span>
+<span class="kn">import</span> <span class="nn">requests</span> 
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.piratesonline.co/news/notification/'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre><h3 id='api-response-4'>API Response</h3>
+<p>If there is an active banner, the API will respond a JSON object with the following keys:</p>
+
+<blockquote>
+<p>JSON Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Legend of Pirates Online is
+             currently closed for an update.
+             We'll be back up soon!"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"datetime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07 19:33"</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>datetime</td>
+<td>This is the date and time the banner was published.</td>
+</tr>
+<tr>
+<td>message</td>
+<td>This is the message inside the banner.</td>
+</tr>
+</tbody></table>
+
+<p>If there is not an active banner, the API will respond an empty JSON object.</p>
+<h1 id='gameserver'>Gameserver</h1><h2 id='ocean-api'>Ocean API</h2>
+<ul>
+<li><code>https://api.piratesonline.co/launcher</code></li>
+<li>Reports the status of each ocean with information on current events, such as an active invasion.</li>
+<li>Responds in JSON format.</li>
+</ul>
+<h3 id='calling-the-api-4'>Calling the API</h3>
+<p>To contact the API, submit a HTTPS GET request to the API URL.</p>
+
+<blockquote>
+<p>Sample Code</p>
+</blockquote>
+<pre class="highlight python tab-python"><code><span class="c"># https://pypi.python.org/pypi/requests</span>
+<span class="kn">import</span> <span class="nn">requests</span> 
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.piratesonline.co/shards/'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre><h3 id='api-response-5'>API Response</h3>
+<p>The API will respond a large JSON object containing numerous keys.  Each top-level key is the ocean&#39;s &quot;base channel&quot;, which differentiates each server from one another inside TLOPO&#39;s internal network.</p>
+
+<p>For example, <code>401000000</code> is Abassa and <code>413000000</code> is Poderoso.</p>
+
+<p>Each of these keys will have the value of another JSON object.  That object contains the following keys:</p>
+<h3 id='ocean-information'>Ocean Information</h3>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>available</td>
+<td>This is whether or not the ocean is enterable.</td>
+</tr>
+<tr>
+<td>created</td>
+<td>This is the time the server started in epoch.</td>
+</tr>
+<tr>
+<td>fleet</td>
+<td>This is information regarding any active fleets.</td>
+</tr>
+<tr>
+<td>invasion</td>
+<td>This is information regarding any active invasion.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>This is the name of the ocean.</td>
+</tr>
+<tr>
+<td>population</td>
+<td>This is the ocean&#39;s current population count.</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>JSON Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"401000000"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Abassa"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1515367988</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"fleet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                   </span><span class="s2">"started"</span><span class="p">:</span><span class="w"> </span><span class="mf">1515371588.921096</span><span class="p">,</span><span class="w">
+                   </span><span class="s2">"shipsRemaining"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                   </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deployed"</span><span class="p">,</span><span class="w">
+                   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"qar"</span><span class="p">},</span><span class="w">
+               </span><span class="s2">"invasion"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+               </span><span class="s2">"population"</span><span class="p">:</span><span class="w"> </span><span class="mi">271</span><span class="p">}}</span><span class="w">
+</span></code></pre>
+<p><code>fleet</code> and <code>invasion</code> both will contain a JSON object value which contains information regarding each of their statuses respectively.</p>
+<h3 id='fleets'>Fleets</h3>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>shipsRemaining</td>
+<td>This is number of remaining ships in the fleet.</td>
+</tr>
+<tr>
+<td>started</td>
+<td>This is the time the fleet started in epoch.</td>
+</tr>
+<tr>
+<td>state</td>
+<td>This is the current status of the fleet.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>This is the type of fleet currently sailing.</td>
+</tr>
+</tbody></table>
+<h3 id='invasions'>Invasions</h3>
+<p>This feature is still under development.  When invasions are released we will update this API doc.</p>
+<h1 id='system-services'>System Services</h1><h2 id='online-status-api'>Online Status API</h2>
+<ul>
+<li><code>https://api.piratesonline.co/launcher</code></li>
+<li>Returns information regarding each of TLOPO&#39;s services and their online status.</li>
+<li>Responds in JSON format.</li>
+</ul>
+<h3 id='calling-the-api-5'>Calling the API</h3>
+<p>To contact the API, submit a HTTPS GET request to the API URL.</p>
+
+<blockquote>
+<p>Sample Code</p>
+</blockquote>
+<pre class="highlight python tab-python"><code><span class="c"># https://pypi.python.org/pypi/requests</span>
+<span class="kn">import</span> <span class="nn">requests</span> 
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.piratesonline.co/system/status/'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre><h3 id='api-response-6'>API Response</h3>
+<p>The API will respond with a large JSON object.  This object will have the following keys:</p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>message</td>
+<td>This is a special message when our system status cannot be displayed.</td>
+</tr>
+<tr>
+<td>notices</td>
+<td>This is the active notices posted our system status.</td>
+</tr>
+<tr>
+<td>servers</td>
+<td>This is a listing of each server and their status.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>This is the current overall status of our services.</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>JSON Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"servers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"web"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API 2"</span><span class="p">},</span><span class="w">
+            </span><span class="err">...</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"oceans"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Valor"</span><span class="p">},</span><span class="w">
+            </span><span class="err">...</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"gameserver_functions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Inventory Manager"</span><span class="p">},</span><span class="w">
+            </span><span class="err">...</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"client_agents"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Connection Agent 3"</span><span class="p">},</span><span class="w">
+            </span><span class="err">...</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+    </span><span class="s2">"notices"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"2018-01-05 11:03:45.955882"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is a published notice regarding a widespread outage."</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"flag"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"If the status cannot be shown, this message will explain why."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='notices'>Notices</h3>
+<p>The <code>notices</code> key will contain additional keys.  Their values will have all active system status notices as a timestamp key.  These notices give information in update form regarding outages, updates, or other detected system issues.  Those timestamp keys will have the following values:</p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>text</td>
+<td>The message published in the notice.</td>
+</tr>
+<tr>
+<td>flag</td>
+<td>The type of notice published.</td>
+</tr>
+</tbody></table>
+
+<p>There are currently 5 types of flags.  Each flag represents a different type of notice, as shown below:</p>
+
+<table><thead>
+<tr>
+<th>Flag</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>All systems are alive and operational.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Non-error information regarding status.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Update information regarding prior status.</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Information regarding an isolated error.</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Information regarding a widespread outage.</td>
+</tr>
+</tbody></table>
+<h3 id='servers'>Servers</h3>
+<p>The <code>servers</code> key will contain a JSON object value which breaks down each server into their respective category:</p>
+
+<table><thead>
+<tr>
+<th>Category</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>client_agents</td>
+<td>TLOPO&#39;s Client/Connection Agents</td>
+</tr>
+<tr>
+<td>gameserver_functions</td>
+<td>TLOPO&#39;s Internal Gameserver Services</td>
+</tr>
+<tr>
+<td>oceans</td>
+<td>TLOPO&#39;s Oceans In-game</td>
+</tr>
+<tr>
+<td>web</td>
+<td>TLOPO&#39;s Web Services</td>
+</tr>
+</tbody></table>
+
+<p>Each of these categories are keys.  Each key will have a list value containing multiple JSON objects.  Each of objects are the servers in that category. They will have following information:</p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>The name of the server.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>The server&#39;s online status as 1 or 0.</td>
+</tr>
 </tbody></table>
 <h1 id='conclusion'>Conclusion</h1>
-<p>Do you have a suggestion for an API?  Send us an email at <a href="mailto:support@piratesonline.co">support@piratesonline.co</a></p>
+<p>Do you have a suggestion for an API?  Send us an email at <a href="mailto:support@piratesonline.co">support@piratesonline.co</a>!</p>
 
 <p>Would you like to make a contribution to our API doc?  <a href="https://github.com/TheLegendofPiratesOnline/documentation/">Check us out on GitHub</a>!</p>
 
