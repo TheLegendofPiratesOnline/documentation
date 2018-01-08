@@ -60,7 +60,7 @@ params = urllib.urlencode({'username' : 'your_username_here',
 headers = {'Content-Type' : 'application/x-www-form-urlencoded'}
 
 r = requests.post('https://api.piratesonline.co/login/', data=params, headers=headers)
-print r.json()
+print(r.json())
 ```
 
 | Params     | Description                                           |
@@ -83,7 +83,7 @@ params = urllib.urlencode({'username' : 'your_username_here',
 headers = {'Content-Type' : 'application/x-www-form-urlencoded'}
 
 r = requests.post('https://api.piratesonline.co/login/', data=params, headers=headers)
-print r.json()
+print(r.json())
 ```
 
 | Params     | Description                                           |
@@ -113,7 +113,7 @@ The API will respond in one of 12 ways.
 | Email Unverified  |     8      | This account's email has not been verified.          |
 | No Playtime       |     9      | This account does not have an active playtime.       |
 | Rate Limited      |     10     | This account is trying to log in too quickly.        |
-| Arrrmor           |     11     | This account is logging in from an unknown loaction. |
+| Arrrmor           |     11     | This account is logging in from an unknown location. |
 
 
 ### Failure responses
@@ -123,31 +123,31 @@ If any one of these responses are received, the login process has ended with an 
 
 ```json
 /* INVALID USERNAME/PASSWORD */
-{"status": "1",
+{"status": 1,
  "message": "Incorrect username and/or password."}
 
 /* ACCOUNT BANNED */
-{"status": "4",
+{"status": 4,
  "message": "This account is on hold. Please login to www.piratesonline.co/account/banned_id/ for more information."}
 
 /* SERVER CLOSED */
-{"status": "5",
+{"status": 5,
  "message": "The Legend of Pirates Online is currently closed for an update. We'll be back up soon!"}
 
 /* UNVERIFIED EMAIL */
-{"status": "8",
+{"status": 8,
  "message": "This account's email hasn't been verified yet. Please check yer email."}
 
 /* NO ACTIVE SESSION (DEPRECATED) */
-{"status": "9",
+{"status": 9,
  "message": "Ye do not have an active session right now.  Ye can sign up for one on our website!"}
 
 /* RATE LIMITED */
-{"status": "10",
+{"status": 10,
  "message": "Ye are trying to login too fast.  Please try again in one minute."}
 
 /* ARRMOR */
-{"status": "11",
+{"status": 11,
  "message": "Ye are trying to login from a new location. Please check yer email."}
 ```
 
