@@ -360,7 +360,7 @@ print(r.text)
 ### API Response
 The API will respond a large JSON object containing numerous keys.  Each top-level key is the ocean's "base channel", which differentiates each server from one another inside TLOPO's internal network.
 
-For example, 401000000 is Abassa and 413000000 is Poderoso.
+For example, `401000000` is Abassa and `413000000` is Poderoso.
 
 Each of these keys will have the value of another JSON object.  That object contains the following keys:
 
