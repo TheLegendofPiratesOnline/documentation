@@ -27,24 +27,22 @@ Welcome to The Legend of Pirates Online API!
 
 You can use our API to access The Legend of Pirates Online API endpoints, which can get information on news, servers and system status.
 
-All API requests must be made using `HTTPS`.
+All API requests must be made using `HTTPS`, **not** `HTTP`.
 
 # Authentication
 
-* Launcher POSTs a request to the API URL.
-  * `https://api.piratesonline.co/login/`.
-* Web responds in one of multiple ways.
-* Launcher interprets web response and launches game if successful.
-  * API will respond in JSON format.
-
+* `https://api.piratesonline.co/login/`
+* Authenticates invoker then returns gameserver information to login on the TLOPO client.
+* Launcher uses HTTP `POST` to send a request to the API.
+* Responds in JSON format.
 
 ## Contacting the API
 ### Headers
 All calls to the API should be made via a HTTP ```POST``` to ```https://api.piratesonline.co/login/``` using an urlencoded form.  To do this, add ```'Content-type': 'application/x-www-form-urlencoded'``` to your headers.
 
 ### Parameters
-- For all practical uses, all API requests should be made using the general account parameters.
-- If the API responds with a request for a two-factor token, submit a new request containing the two-factor parameter.
+* For all practical uses, all API requests should be made using the general account parameters.
+* If the API responds with a request for a two-factor token, submit a new request containing the two-factor parameter.
 
 The following tables outline the required parameters for both cases:
 
@@ -214,3 +212,45 @@ os.environ['TLOPO_PLAYCOOKIE'] = cookie_from_server
 | TLOPO_GAMESERVER     | The gameserver provided by the API. |
 | TLOPO_PLAYCOOKIE     | The token provided by the API.      |
 
+# Blog Posts
+
+* Returns information on the latest news.
+* Invoked using `HTTP GET`
+
+## News Feed
+
+* `https://api.piratesonline.co/news/feed/<number_of_posts>`
+* Respons in JSON format.
+
+### Calling the API
+To contact the API, submit a HTTPS GET request to the API URL.
+
+```python
+# https://pypi.python.org/pypi/requests
+import requests 
+
+r = requests.get('https://api.piratesonline.co/news/feed/')
+print r.text
+```
+
+By default, the URL will respond with the latest 5 news posts.  If you wish to receive a different amount, such as the latest 10, you must submit your GET request with the following structure: `https://api.piratesonline.co/news/feed/10`.
+
+### API Response
+The API will respond a list of JSON objects.  Each JSON object will have the following keys:
+
+```json
+/* EXAMPLE RESPONSE */
+{"url": "https://piratesonline.co/news/post/126/",
+ "date": "2017-12-13 19:00:00",
+ "author": "John Carver",
+ "id": 126,
+ "title": "Twelve Days of Celebration!"}
+```
+
+|      Key      | Value                                         |
+|---------------|-----------------------------------------------|
+| url           | This is the direct URL to the blog post.      |
+| date          | This is the date the blog post was published. |
+| author        | This is the author of the blog post.          |
+| id            | This is the blog post's id/number.            |
+| title         | This is the title of the blog post.           |
