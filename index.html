@@ -236,6 +236,14 @@
               </ul>
           </li>
           <li>
+            <a href="#blog-posts" class="toc-h1 toc-link" data-title="Blog Posts">Blog Posts</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#news-feed" class="toc-h2 toc-link" data-title="News Feed">News Feed</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#conclusion" class="toc-h1 toc-link" data-title="Conclusion">Conclusion</a>
           </li>
       </div>
@@ -256,20 +264,13 @@
 
 <p>You can use our API to access The Legend of Pirates Online API endpoints, which can get information on news, servers and system status.</p>
 
-<p>All API requests must be made using <code>HTTPS</code>.</p>
+<p>All API requests must be made using <code>HTTPS</code>, <strong>not</strong> <code>HTTP</code>.</p>
 <h1 id='authentication'>Authentication</h1>
 <ul>
-<li>Launcher POSTs a request to the API URL.
-
-<ul>
-<li><code>https://api.piratesonline.co/login/</code>.</li>
-</ul></li>
-<li>Web responds in one of multiple ways.</li>
-<li>Launcher interprets web response and launches game if successful.
-
-<ul>
-<li>API will respond in JSON format.</li>
-</ul></li>
+<li><code>https://api.piratesonline.co/login/</code></li>
+<li>Authenticates invoker then returns gameserver information to login on the TLOPO client.</li>
+<li>Launcher uses HTTP <code>POST</code> to send a request to the API.</li>
+<li>Responds in JSON format.</li>
 </ul>
 <h2 id='contacting-the-api'>Contacting the API</h2><h3 id='headers'>Headers</h3>
 <p>All calls to the API should be made via a HTTP <code>POST</code> to <code>https://api.piratesonline.co/login/</code> using an urlencoded form.  To do this, add <code>&#39;Content-type&#39;: &#39;application/x-www-form-urlencoded&#39;</code> to your headers.</p>
@@ -291,7 +292,7 @@
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/x-www-form-urlencoded'</span><span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'https://api.piratesonline.co/login/'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+<span class="k">print</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
 <table><thead>
 <tr>
@@ -320,7 +321,7 @@
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/x-www-form-urlencoded'</span><span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'https://api.piratesonline.co/login/'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+<span class="k">print</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
 <table><thead>
 <tr>
@@ -409,7 +410,7 @@
 <tr>
 <td>Arrrmor</td>
 <td>11</td>
-<td>This account is logging in from an unknown location.</td>
+<td>This account is logging in from an unknown loaction.</td>
 </tr>
 </tbody></table>
 <h3 id='failure-responses'>Failure responses</h3>
@@ -417,31 +418,31 @@
 <pre class="highlight json tab-json"><code><span class="err">/*</span><span class="w"> </span><span class="err">ACTUAL</span><span class="w"> </span><span class="err">PROD</span><span class="w"> </span><span class="err">JSON</span><span class="w"> </span><span class="err">RESPONSES</span><span class="w"> </span><span class="err">*/</span><span class="w">
 
 </span><span class="err">/*</span><span class="w"> </span><span class="err">INVALID</span><span class="w"> </span><span class="err">USERNAME/PASSWORD</span><span class="w"> </span><span class="err">*/</span><span class="w">
-</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Incorrect username and/or password."</span><span class="p">}</span><span class="w">
 
 </span><span class="err">/*</span><span class="w"> </span><span class="err">ACCOUNT</span><span class="w"> </span><span class="err">BANNED</span><span class="w"> </span><span class="err">*/</span><span class="w">
-</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This account is on hold. Please login to www.piratesonline.co/account/banned_id/ for more information."</span><span class="p">}</span><span class="w">
 
 </span><span class="err">/*</span><span class="w"> </span><span class="err">SERVER</span><span class="w"> </span><span class="err">CLOSED</span><span class="w"> </span><span class="err">*/</span><span class="w">
-</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Legend of Pirates Online is currently closed for an update. We'll be back up soon!"</span><span class="p">}</span><span class="w">
 
 </span><span class="err">/*</span><span class="w"> </span><span class="err">UNVERIFIED</span><span class="w"> </span><span class="err">EMAIL</span><span class="w"> </span><span class="err">*/</span><span class="w">
-</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8"</span><span class="p">,</span><span class="w">
  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This account's email hasn't been verified yet. Please check yer email."</span><span class="p">}</span><span class="w">
 
 </span><span class="err">/*</span><span class="w"> </span><span class="err">NO</span><span class="w"> </span><span class="err">ACTIVE</span><span class="w"> </span><span class="err">SESSION</span><span class="w"> </span><span class="err">(DEPRECATED)</span><span class="w"> </span><span class="err">*/</span><span class="w">
-</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9"</span><span class="p">,</span><span class="w">
  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ye do not have an active session right now.  Ye can sign up for one on our website!"</span><span class="p">}</span><span class="w">
 
 </span><span class="err">/*</span><span class="w"> </span><span class="err">RATE</span><span class="w"> </span><span class="err">LIMITED</span><span class="w"> </span><span class="err">*/</span><span class="w">
-</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ye are trying to login too fast.  Please try again in one minute."</span><span class="p">}</span><span class="w">
 
 </span><span class="err">/*</span><span class="w"> </span><span class="err">ARRMOR</span><span class="w"> </span><span class="err">*/</span><span class="w">
-</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w">
  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ye are trying to login from a new location. Please check yer email."</span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='status-1-invalid-username-password'>Status 1: Invalid username/password</h3>
 <p>The submitted Username/Password was incorrect.</p>
@@ -457,7 +458,7 @@
 <p>If an account sends too many login requests over a period of time.</p>
 <h3 id='status-11-arrrmor'>Status 11: Arrrmor</h3>
 <p>Two-step security for geolocation</p>
-<h3 id='successful-responses'>Successful responses</h3><h3 id='partial-success-two-step-required'>Partial-success: Two-Step Required</h3><pre class="highlight json tab-json"><code><span class="err">/*</span><span class="w"> </span><span class="err">PARTIALLY</span><span class="w"> </span><span class="err">SUCCESSFUL</span><span class="w"> </span><span class="err">LOGIN</span><span class="w"> </span><span class="err">*/</span><span class="w">
+<h3 id='successful-responses'>Successful responses</h3><h3 id='partial-success-two-step-required'>Partial-success: Two-Step Required</h3><pre class="highlight json tab-json"><code><span class="err">/*</span><span class="w"> </span><span class="err">PARTICALLY</span><span class="w"> </span><span class="err">SUCCESSFUL</span><span class="w"> </span><span class="err">LOGIN</span><span class="w"> </span><span class="err">*/</span><span class="w">
 </span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A two-factor authentication code is required to login."</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>You must send another request to the login API containing the user-supplied authentication token using the <code>gtoken</code> parameter.  If this token is invalid and/or expired, you will receive another partial-success login.  You must send the username and password again when sending this follow-up request.</p>
@@ -491,6 +492,61 @@
 <tr>
 <td>TLOPO_PLAYCOOKIE</td>
 <td>The token provided by the API.</td>
+</tr>
+</tbody></table>
+<h1 id='blog-posts'>Blog Posts</h1>
+<ul>
+<li>Returns information on the latest news.</li>
+<li>Invoked using <code>HTTP GET</code></li>
+</ul>
+<h2 id='news-feed'>News Feed</h2>
+<ul>
+<li><code>https://api.piratesonline.co/news/feed/&lt;number_of_posts&gt;</code></li>
+<li>Respons in JSON format.</li>
+</ul>
+<h3 id='calling-the-api'>Calling the API</h3>
+<p>To contact the API, submit a HTTPS GET request to the API URL.</p>
+<pre class="highlight python tab-python"><code><span class="c"># https://pypi.python.org/pypi/requests</span>
+<span class="kn">import</span> <span class="nn">requests</span> 
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.piratesonline.co/news/feed/'</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">r</span><span class="o">.</span><span class="n">text</span>
+</code></pre>
+<p>By default, the URL will respond with the latest 5 news posts.  If you wish to receive a different amount, such as the latest 10, you must submit your GET request with the following structure: <code>https://api.piratesonline.co/news/feed/10</code>.</p>
+<h3 id='api-response-2'>API Response</h3>
+<p>The API will respond a list of JSON objects.  Each JSON object will have the following keys:</p>
+<pre class="highlight json tab-json"><code><span class="err">/*</span><span class="w"> </span><span class="err">EXAMPLE</span><span class="w"> </span><span class="err">RESPONSE</span><span class="w"> </span><span class="err">*/</span><span class="w">
+</span><span class="p">{</span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://piratesonline.co/news/post/126/"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-13 19:00:00"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Carver"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">126</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Twelve Days of Celebration!"</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>url</td>
+<td>This is the direct URL to the blog post.</td>
+</tr>
+<tr>
+<td>date</td>
+<td>This is the date the blog post was published.</td>
+</tr>
+<tr>
+<td>author</td>
+<td>This is the author of the blog post.</td>
+</tr>
+<tr>
+<td>id</td>
+<td>This is the blog post&#39;s id/number.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>This is the title of the blog post.</td>
 </tr>
 </tbody></table>
 <h1 id='conclusion'>Conclusion</h1>
