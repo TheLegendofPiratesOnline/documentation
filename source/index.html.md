@@ -296,6 +296,43 @@ The API will respond a list of JSON objects.  Each JSON object will have the fol
 | title         | This is the title of the blog post.                    |
 | url           | This is the direct URL to the blog post.               |
 
+## Release Notes Feed API
+
+* `https://api.piratesonline.co/releases/feed/<number_of_posts>`
+* Returns the latest releases.
+* Responds in JSON format.
+
+### Calling the API
+To contact the API, submit a HTTPS GET request to the API URL.
+
+> Sample Code
+
+```python
+# https://pypi.python.org/pypi/requests
+import requests
+
+r = requests.get('https://api.piratesonline.co/releases/feed/')
+print(r.text)
+```
+
+By default, the URL will respond with the latest 5 releases.  If you wish to receive a different amount, such as the latest 10, you must submit your GET request with the following structure: `https://api.piratesonline.co/releases/feed/10`.
+
+### API Response
+The API will respond a list of JSON objects.  Each JSON object will have the following keys:
+
+> JSON Response
+```json
+{"url": "https://piratesonline.co/release/4.3.2",
+ "date": "2017-12-13 19:00:00",
+ "version": "4.3.2"}
+```
+
+|      Key      | Value                                                     |
+|---------------|-----------------------------------------------------------|
+| date          | This is the date and time the release note was published. |
+| version        | This is the release note's version number.                |
+| url           | This is the direct URL to the release note.               |
+
 ## News Notification API
 
 * `https://api.piratesonline.co/news/notification`
