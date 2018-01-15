@@ -239,6 +239,9 @@
                     <a href="#news-feed-api" class="toc-h2 toc-link" data-title="News Feed API">News Feed API</a>
                   </li>
                   <li>
+                    <a href="#release-notes-feed-api" class="toc-h2 toc-link" data-title="Release Notes Feed API">Release Notes Feed API</a>
+                  </li>
+                  <li>
                     <a href="#news-notification-api" class="toc-h2 toc-link" data-title="News Notification API">News Notification API</a>
                   </li>
               </ul>
@@ -621,13 +624,63 @@
 <td>This is the direct URL to the blog post.</td>
 </tr>
 </tbody></table>
+<h2 id='release-notes-feed-api'>Release Notes Feed API</h2>
+<ul>
+<li><code>https://api.piratesonline.co/releases/feed/&lt;number_of_posts&gt;</code></li>
+<li>Returns the latest releases.</li>
+<li>Responds in JSON format.</li>
+</ul>
+<h3 id='calling-the-api-3'>Calling the API</h3>
+<p>To contact the API, submit a HTTPS GET request to the API URL.</p>
+
+<blockquote>
+<p>Sample Code</p>
+</blockquote>
+<pre class="highlight python tab-python"><code><span class="c"># https://pypi.python.org/pypi/requests</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.piratesonline.co/releases/feed/'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
+<p>By default, the URL will respond with the latest 5 releases.  If you wish to receive a different amount, such as the latest 10, you must submit your GET request with the following structure: <code>https://api.piratesonline.co/releases/feed/10</code>.</p>
+<h3 id='api-response-4'>API Response</h3>
+<p>The API will respond a list of JSON objects.  Each JSON object will have the following keys:</p>
+
+<blockquote>
+<p>JSON Response
+<code>json
+{&quot;url&quot;: &quot;https://piratesonline.co/release/4.3.2&quot;,
+ &quot;date&quot;: &quot;2017-12-13 19:00:00&quot;,
+ &quot;version&quot;: &quot;4.3.2&quot;}
+</code></p>
+</blockquote>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>date</td>
+<td>This is the date and time the release note was published.</td>
+</tr>
+<tr>
+<td>version</td>
+<td>This is the release note&#39;s version number.</td>
+</tr>
+<tr>
+<td>url</td>
+<td>This is the direct URL to the release note.</td>
+</tr>
+</tbody></table>
 <h2 id='news-notification-api'>News Notification API</h2>
 <ul>
 <li><code>https://api.piratesonline.co/news/notification</code></li>
 <li>Returns the current news banner on the TLOPO website.</li>
 <li>Responds in JSON format.</li>
 </ul>
-<h3 id='calling-the-api-3'>Calling the API</h3>
+<h3 id='calling-the-api-4'>Calling the API</h3>
 <p>To contact the API, submit a HTTPS GET request to the API URL.</p>
 
 <blockquote>
@@ -638,7 +691,7 @@
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.piratesonline.co/news/notification/'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-</code></pre><h3 id='api-response-4'>API Response</h3>
+</code></pre><h3 id='api-response-5'>API Response</h3>
 <p>If there is an active banner, the API will respond a JSON object with the following keys:</p>
 
 <blockquote>
@@ -672,7 +725,7 @@
 <li>Reports the status of each ocean with information on current events, such as an active invasion.</li>
 <li>Responds in JSON format.</li>
 </ul>
-<h3 id='calling-the-api-4'>Calling the API</h3>
+<h3 id='calling-the-api-5'>Calling the API</h3>
 <p>To contact the API, submit a HTTPS GET request to the API URL.</p>
 
 <blockquote>
@@ -683,7 +736,7 @@
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.piratesonline.co/shards/'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-</code></pre><h3 id='api-response-5'>API Response</h3>
+</code></pre><h3 id='api-response-6'>API Response</h3>
 <p>The API will respond a large JSON object containing numerous keys.  Each top-level key is the ocean&#39;s &quot;base channel&quot;, which differentiates each server from one another inside TLOPO&#39;s internal network.</p>
 
 <p>For example, <code>401000000</code> is Abassa and <code>413000000</code> is Poderoso.</p>
@@ -769,7 +822,7 @@
 <li>Returns information regarding each of TLOPO&#39;s services and their online status.</li>
 <li>Responds in JSON format.</li>
 </ul>
-<h3 id='calling-the-api-5'>Calling the API</h3>
+<h3 id='calling-the-api-6'>Calling the API</h3>
 <p>To contact the API, submit a HTTPS GET request to the API URL.</p>
 
 <blockquote>
@@ -780,7 +833,7 @@
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.piratesonline.co/system/status/'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-</code></pre><h3 id='api-response-6'>API Response</h3>
+</code></pre><h3 id='api-response-7'>API Response</h3>
 <p>The API will respond with a large JSON object.  This object will have the following keys:</p>
 
 <table><thead>
