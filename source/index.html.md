@@ -195,7 +195,7 @@ You must send another request to the login API containing the user-supplied auth
 {"status": "7",
  "message": "Have fun!",
  "token": "12345678abcdefgh",
- "gameserver": "prod-gs-protected-agent-1.legendoftlopo.comm"}
+ "gameserver": "prod-gs-protected-agent-1.tlopo.com"}
 ```
 
 You have successfully authenticated with the API.
