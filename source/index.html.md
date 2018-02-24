@@ -5,7 +5,7 @@ language_tabs:
   - python
 
 toc_footers:
-  - <a href='https://piratesonline.co/'>Return to main website.</a>
+  - <a href='https://tlopo.com/'>Return to main website.</a>
 
 includes:
   - errors
@@ -33,13 +33,13 @@ All API requests must be made using `HTTPS`, **not** `HTTP`.
 
 ## Login API
 
-* `https://api.piratesonline.co/login/`
+* `https://api.tlopo.com/login/`
 * Authenticates invoker then returns gameserver information to login on the TLOPO client.
 * Launcher uses HTTP `POST` to send a request to the API.
 * Responds in JSON format.
 
 ### Headers
-All calls to the API should be made via a HTTP ```POST``` to ```https://api.piratesonline.co/login/``` using an urlencoded form.  To do this, add ```'Content-type' : 'application/x-www-form-urlencoded'``` to your headers.
+All calls to the API should be made via a HTTP ```POST``` to ```https://api.tlopo.com/login/``` using an urlencoded form.  To do this, add ```'Content-type' : 'application/x-www-form-urlencoded'``` to your headers.
 
 ### Parameters
 * For all practical uses, all API requests should be made using the general account parameters.
@@ -60,7 +60,7 @@ params = urllib.urlencode({'username' : 'your_username_here',
                            'password' : 'your_password_here'})
 headers = {'Content-Type' : 'application/x-www-form-urlencoded'}
 
-r = requests.post('https://api.piratesonline.co/login/', data=params, headers=headers)
+r = requests.post('https://api.tlopo.com/login/', data=params, headers=headers)
 print(r.json())
 ```
 
@@ -83,7 +83,7 @@ params = urllib.urlencode({'username' : 'your_username_here',
                            'gtoken'   : 'your_2fa_token_here'})
 headers = {'Content-Type' : 'application/x-www-form-urlencoded'}
 
-r = requests.post('https://api.piratesonline.co/login/', data=params, headers=headers)
+r = requests.post('https://api.tlopo.com/login/', data=params, headers=headers)
 print(r.json())
 ```
 
@@ -129,7 +129,7 @@ If any one of these responses are received, the login process has ended with an 
 
 /* ACCOUNT BANNED */
 {"status": 4,
- "message": "This account is on hold. Please login to www.piratesonline.co/account/banned_id/ for more information."}
+ "message": "This account is on hold. Please login to www.tlopo.com/account/banned_id/ for more information."}
 
 /* SERVER CLOSED */
 {"status": 5,
@@ -171,7 +171,7 @@ This account's email hasn't been verified yet.
 If an account sends too many login requests over a period of time.
 
 ### Status 11: Arrrmor
-Two-step security using geolocation data.  Read more [here](https://piratesonline.co/help/arrrmor/).
+Two-step security using geolocation data.  Read more [here](https://tlopo.com/help/arrrmor/).
 
 
 ### Successful responses
@@ -195,7 +195,7 @@ You must send another request to the login API containing the user-supplied auth
 {"status": "7",
  "message": "Have fun!",
  "token": "12345678abcdefgh",
- "gameserver": "prod-gs-protected-agent-1.legendofpiratesonline.com"}
+ "gameserver": "prod-gs-protected-agent-1.legendoftlopo.comm"}
 ```
 
 You have successfully authenticated with the API.
@@ -232,7 +232,7 @@ os.environ['TLOPO_PLAYCOOKIE'] = cookie_from_server
 
 ## Launcher News API
 
-* `https://api.piratesonline.co/launcher`
+* `https://api.tlopo.com/launcher`
 * Returns a pre-formatted HTML document which is rendered inside TLOPO's launchers under "Game News".
   * This document contains the latest blog posts.
 
@@ -245,7 +245,7 @@ To contact the API, submit a HTTPS GET request to the API URL.
 # https://pypi.python.org/pypi/requests
 import requests 
 
-r = requests.get('https://api.piratesonline.co/launcher/')
+r = requests.get('https://api.tlopo.com/launcher/')
 print(r.text)
 ```
 
@@ -257,7 +257,7 @@ The HTML responded will not contain any kind of background.  The intention is fo
 
 ## News Feed API
 
-* `https://api.piratesonline.co/news/feed/<number_of_posts>`
+* `https://api.tlopo.com/news/feed/<number_of_posts>`
 * Returns the latest news posts.
 * Responds in JSON format.
 
@@ -270,18 +270,18 @@ To contact the API, submit a HTTPS GET request to the API URL.
 # https://pypi.python.org/pypi/requests
 import requests 
 
-r = requests.get('https://api.piratesonline.co/news/feed/')
+r = requests.get('https://api.tlopo.com/news/feed/')
 print(r.text)
 ```
 
-By default, the URL will respond with the latest 5 news posts.  If you wish to receive a different amount, such as the latest 10, you must submit your GET request with the following structure: `https://api.piratesonline.co/news/feed/10`.
+By default, the URL will respond with the latest 5 news posts.  If you wish to receive a different amount, such as the latest 10, you must submit your GET request with the following structure: `https://api.tlopo.com/news/feed/10`.
 
 ### API Response
 The API will respond a list of JSON objects.  Each JSON object will have the following keys:
 
 > JSON Response
 ```json
-{"url": "https://piratesonline.co/news/post/126/",
+{"url": "https://tlopo.com/news/post/126/",
  "date": "2017-12-13 19:00:00",
  "author": "John Carver",
  "id": 126,
@@ -298,7 +298,7 @@ The API will respond a list of JSON objects.  Each JSON object will have the fol
 
 ## Release Notes Feed API
 
-* `https://api.piratesonline.co/releases/feed/<number_of_posts>`
+* `https://api.tlopo.com/releases/feed/<number_of_posts>`
 * Returns the latest releases.
 * Responds in JSON format.
 
@@ -311,18 +311,18 @@ To contact the API, submit a HTTPS GET request to the API URL.
 # https://pypi.python.org/pypi/requests
 import requests
 
-r = requests.get('https://api.piratesonline.co/releases/feed/')
+r = requests.get('https://api.tlopo.com/releases/feed/')
 print(r.text)
 ```
 
-By default, the URL will respond with the latest 5 releases.  If you wish to receive a different amount, such as the latest 10, you must submit your GET request with the following structure: `https://api.piratesonline.co/releases/feed/10`.
+By default, the URL will respond with the latest 5 releases.  If you wish to receive a different amount, such as the latest 10, you must submit your GET request with the following structure: `https://api.tlopo.com/releases/feed/10`.
 
 ### API Response
 The API will respond a list of JSON objects.  Each JSON object will have the following keys:
 
 > JSON Response
 ```json
-{"url": "https://piratesonline.co/release/4.3.2",
+{"url": "https://tlopo.com/release/4.3.2",
  "date": "2017-12-13 19:00:00",
  "version": "4.3.2"}
 ```
@@ -335,7 +335,7 @@ The API will respond a list of JSON objects.  Each JSON object will have the fol
 
 ## News Notification API
 
-* `https://api.piratesonline.co/news/notification`
+* `https://api.tlopo.com/news/notification`
 * Returns the current news banner on the TLOPO website.
 * Responds in JSON format.
 
@@ -348,7 +348,7 @@ To contact the API, submit a HTTPS GET request to the API URL.
 # https://pypi.python.org/pypi/requests
 import requests 
 
-r = requests.get('https://api.piratesonline.co/news/notification/')
+r = requests.get('https://api.tlopo.com/news/notification/')
 print(r.text)
 ```
 
@@ -376,7 +376,7 @@ If there is not an active banner, the API will respond an empty JSON object.
 
 ## Ocean API
 
-* `https://api.piratesonline.co/shards`
+* `https://api.tlopo.com/shards`
 * Reports the status of each ocean with information on current events, such as an active invasion.
 * Responds in JSON format.
 
@@ -389,7 +389,7 @@ To contact the API, submit a HTTPS GET request to the API URL.
 # https://pypi.python.org/pypi/requests
 import requests 
 
-r = requests.get('https://api.piratesonline.co/shards/')
+r = requests.get('https://api.tlopo.com/shards/')
 print(r.text)
 ```
 
@@ -443,7 +443,7 @@ This feature is still under development.  When invasions are released we will up
 # System Services
 
 ## Online Status API
-* `https://api.piratesonline.co/system/status`
+* `https://api.tlopo.com/system/status`
 * Returns information regarding each of TLOPO's services and their online status.
 * Responds in JSON format.
 
@@ -456,7 +456,7 @@ To contact the API, submit a HTTPS GET request to the API URL.
 # https://pypi.python.org/pypi/requests
 import requests 
 
-r = requests.get('https://api.piratesonline.co/system/status/')
+r = requests.get('https://api.tlopo.com/system/status/')
 print(r.text)
 ```
 
