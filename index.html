@@ -267,7 +267,7 @@
           </li>
       </div>
         <ul class="toc-footer">
-            <li><a href='https://piratesonline.co/'>Return to main website.</a></li>
+            <li><a href='https://tlopo.com/'>Return to main website.</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -286,13 +286,13 @@
 <p>All API requests must be made using <code>HTTPS</code>, <strong>not</strong> <code>HTTP</code>.</p>
 <h1 id='authentication'>Authentication</h1><h2 id='login-api'>Login API</h2>
 <ul>
-<li><code>https://api.piratesonline.co/login/</code></li>
+<li><code>https://api.tlopo.com/login/</code></li>
 <li>Authenticates invoker then returns gameserver information to login on the TLOPO client.</li>
 <li>Launcher uses HTTP <code>POST</code> to send a request to the API.</li>
 <li>Responds in JSON format.</li>
 </ul>
 <h3 id='headers'>Headers</h3>
-<p>All calls to the API should be made via a HTTP <code>POST</code> to <code>https://api.piratesonline.co/login/</code> using an urlencoded form.  To do this, add <code>&#39;Content-type&#39; : &#39;application/x-www-form-urlencoded&#39;</code> to your headers.</p>
+<p>All calls to the API should be made via a HTTP <code>POST</code> to <code>https://api.tlopo.com/login/</code> using an urlencoded form.  To do this, add <code>&#39;Content-type&#39; : &#39;application/x-www-form-urlencoded&#39;</code> to your headers.</p>
 <h3 id='parameters'>Parameters</h3>
 <ul>
 <li>For all practical uses, all API requests should be made using the general account parameters.</li>
@@ -312,7 +312,7 @@
                            <span class="s">'password'</span> <span class="p">:</span> <span class="s">'your_password_here'</span><span class="p">})</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Content-Type'</span> <span class="p">:</span> <span class="s">'application/x-www-form-urlencoded'</span><span class="p">}</span>
 
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'https://api.piratesonline.co/login/'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'https://api.tlopo.com/login/'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre>
 <table><thead>
@@ -343,7 +343,7 @@
                            <span class="s">'gtoken'</span>   <span class="p">:</span> <span class="s">'your_2fa_token_here'</span><span class="p">})</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Content-Type'</span> <span class="p">:</span> <span class="s">'application/x-www-form-urlencoded'</span><span class="p">}</span>
 
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'https://api.piratesonline.co/login/'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'https://api.tlopo.com/login/'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre>
 <table><thead>
@@ -450,7 +450,7 @@
 
 </span><span class="err">/*</span><span class="w"> </span><span class="err">ACCOUNT</span><span class="w"> </span><span class="err">BANNED</span><span class="w"> </span><span class="err">*/</span><span class="w">
 </span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
- </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This account is on hold. Please login to www.piratesonline.co/account/banned_id/ for more information."</span><span class="p">}</span><span class="w">
+ </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This account is on hold. Please login to www.tlopo.com/account/banned_id/ for more information."</span><span class="p">}</span><span class="w">
 
 </span><span class="err">/*</span><span class="w"> </span><span class="err">SERVER</span><span class="w"> </span><span class="err">CLOSED</span><span class="w"> </span><span class="err">*/</span><span class="w">
 </span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
@@ -484,7 +484,7 @@
 <h3 id='status-10-rate-limited'>Status 10: Rate Limited</h3>
 <p>If an account sends too many login requests over a period of time.</p>
 <h3 id='status-11-arrrmor'>Status 11: Arrrmor</h3>
-<p>Two-step security using geolocation data.  Read more <a href="https://piratesonline.co/help/arrrmor/">here</a>.</p>
+<p>Two-step security using geolocation data.  Read more <a href="https://tlopo.com/help/arrrmor/">here</a>.</p>
 <h3 id='successful-responses'>Successful responses</h3><h3 id='partial-success-two-step-required'>Partial-success: Two-Step Required</h3>
 <blockquote>
 <p>JSON Response - Partical Success</p>
@@ -500,7 +500,7 @@
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w">
  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Have fun!"</span><span class="p">,</span><span class="w">
  </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678abcdefgh"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"gameserver"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prod-gs-protected-agent-1.legendofpiratesonline.com"</span><span class="p">}</span><span class="w">
+ </span><span class="s2">"gameserver"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prod-gs-protected-agent-1.legendoftlopo.comm"</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>You have successfully authenticated with the API.</p>
 
@@ -542,7 +542,7 @@
 </ul>
 <h2 id='launcher-news-api'>Launcher News API</h2>
 <ul>
-<li><code>https://api.piratesonline.co/launcher</code></li>
+<li><code>https://api.tlopo.com/launcher</code></li>
 <li>Returns a pre-formatted HTML document which is rendered inside TLOPO&#39;s launchers under &quot;Game News&quot;.
 
 <ul>
@@ -558,7 +558,7 @@
 <pre class="highlight python tab-python"><code><span class="c"># https://pypi.python.org/pypi/requests</span>
 <span class="kn">import</span> <span class="nn">requests</span> 
 
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.piratesonline.co/launcher/'</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.tlopo.com/launcher/'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre><h3 id='api-response-2'>API Response</h3>
 <p>The API will respond with a pre-formatted HTML document.  This API is used inside TLOPO&#39;s launchers to render the 10 most recent blog posts.</p>
@@ -566,7 +566,7 @@
 <p>The HTML responded will not contain any kind of background.  The intention is for our launchers to overlay this HTML on the &#39;Game News&#39; section, thus having a background provided there.</p>
 <h2 id='news-feed-api'>News Feed API</h2>
 <ul>
-<li><code>https://api.piratesonline.co/news/feed/&lt;number_of_posts&gt;</code></li>
+<li><code>https://api.tlopo.com/news/feed/&lt;number_of_posts&gt;</code></li>
 <li>Returns the latest news posts.</li>
 <li>Responds in JSON format.</li>
 </ul>
@@ -579,17 +579,17 @@
 <pre class="highlight python tab-python"><code><span class="c"># https://pypi.python.org/pypi/requests</span>
 <span class="kn">import</span> <span class="nn">requests</span> 
 
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.piratesonline.co/news/feed/'</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.tlopo.com/news/feed/'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre>
-<p>By default, the URL will respond with the latest 5 news posts.  If you wish to receive a different amount, such as the latest 10, you must submit your GET request with the following structure: <code>https://api.piratesonline.co/news/feed/10</code>.</p>
+<p>By default, the URL will respond with the latest 5 news posts.  If you wish to receive a different amount, such as the latest 10, you must submit your GET request with the following structure: <code>https://api.tlopo.com/news/feed/10</code>.</p>
 <h3 id='api-response-3'>API Response</h3>
 <p>The API will respond a list of JSON objects.  Each JSON object will have the following keys:</p>
 
 <blockquote>
 <p>JSON Response
 <code>json
-{&quot;url&quot;: &quot;https://piratesonline.co/news/post/126/&quot;,
+{&quot;url&quot;: &quot;https://tlopo.com/news/post/126/&quot;,
  &quot;date&quot;: &quot;2017-12-13 19:00:00&quot;,
  &quot;author&quot;: &quot;John Carver&quot;,
  &quot;id&quot;: 126,
@@ -626,7 +626,7 @@
 </tbody></table>
 <h2 id='release-notes-feed-api'>Release Notes Feed API</h2>
 <ul>
-<li><code>https://api.piratesonline.co/releases/feed/&lt;number_of_posts&gt;</code></li>
+<li><code>https://api.tlopo.com/releases/feed/&lt;number_of_posts&gt;</code></li>
 <li>Returns the latest releases.</li>
 <li>Responds in JSON format.</li>
 </ul>
@@ -639,17 +639,17 @@
 <pre class="highlight python tab-python"><code><span class="c"># https://pypi.python.org/pypi/requests</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.piratesonline.co/releases/feed/'</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.tlopo.com/releases/feed/'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre>
-<p>By default, the URL will respond with the latest 5 releases.  If you wish to receive a different amount, such as the latest 10, you must submit your GET request with the following structure: <code>https://api.piratesonline.co/releases/feed/10</code>.</p>
+<p>By default, the URL will respond with the latest 5 releases.  If you wish to receive a different amount, such as the latest 10, you must submit your GET request with the following structure: <code>https://api.tlopo.com/releases/feed/10</code>.</p>
 <h3 id='api-response-4'>API Response</h3>
 <p>The API will respond a list of JSON objects.  Each JSON object will have the following keys:</p>
 
 <blockquote>
 <p>JSON Response
 <code>json
-{&quot;url&quot;: &quot;https://piratesonline.co/release/4.3.2&quot;,
+{&quot;url&quot;: &quot;https://tlopo.com/release/4.3.2&quot;,
  &quot;date&quot;: &quot;2017-12-13 19:00:00&quot;,
  &quot;version&quot;: &quot;4.3.2&quot;}
 </code></p>
@@ -676,7 +676,7 @@
 </tbody></table>
 <h2 id='news-notification-api'>News Notification API</h2>
 <ul>
-<li><code>https://api.piratesonline.co/news/notification</code></li>
+<li><code>https://api.tlopo.com/news/notification</code></li>
 <li>Returns the current news banner on the TLOPO website.</li>
 <li>Responds in JSON format.</li>
 </ul>
@@ -689,7 +689,7 @@
 <pre class="highlight python tab-python"><code><span class="c"># https://pypi.python.org/pypi/requests</span>
 <span class="kn">import</span> <span class="nn">requests</span> 
 
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.piratesonline.co/news/notification/'</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.tlopo.com/news/notification/'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre><h3 id='api-response-5'>API Response</h3>
 <p>If there is an active banner, the API will respond a JSON object with the following keys:</p>
@@ -721,7 +721,7 @@
 <p>If there is not an active banner, the API will respond an empty JSON object.</p>
 <h1 id='gameserver'>Gameserver</h1><h2 id='ocean-api'>Ocean API</h2>
 <ul>
-<li><code>https://api.piratesonline.co/shards</code></li>
+<li><code>https://api.tlopo.com/shards</code></li>
 <li>Reports the status of each ocean with information on current events, such as an active invasion.</li>
 <li>Responds in JSON format.</li>
 </ul>
@@ -734,7 +734,7 @@
 <pre class="highlight python tab-python"><code><span class="c"># https://pypi.python.org/pypi/requests</span>
 <span class="kn">import</span> <span class="nn">requests</span> 
 
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.piratesonline.co/shards/'</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.tlopo.com/shards/'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre><h3 id='api-response-6'>API Response</h3>
 <p>The API will respond a large JSON object containing numerous keys.  Each top-level key is the ocean&#39;s &quot;base channel&quot;, which differentiates each server from one another inside TLOPO&#39;s internal network.</p>
@@ -818,7 +818,7 @@
 <p>This feature is still under development.  When invasions are released we will update this API doc.</p>
 <h1 id='system-services'>System Services</h1><h2 id='online-status-api'>Online Status API</h2>
 <ul>
-<li><code>https://api.piratesonline.co/system/status</code></li>
+<li><code>https://api.tlopo.com/system/status</code></li>
 <li>Returns information regarding each of TLOPO&#39;s services and their online status.</li>
 <li>Responds in JSON format.</li>
 </ul>
@@ -831,7 +831,7 @@
 <pre class="highlight python tab-python"><code><span class="c"># https://pypi.python.org/pypi/requests</span>
 <span class="kn">import</span> <span class="nn">requests</span> 
 
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.piratesonline.co/system/status/'</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.tlopo.com/system/status/'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre><h3 id='api-response-7'>API Response</h3>
 <p>The API will respond with a large JSON object.  This object will have the following keys:</p>
