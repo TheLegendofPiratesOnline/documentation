@@ -319,7 +319,7 @@ print(r.text)
 By default, the URL will respond with the latest 5 releases.  If you wish to receive a different amount, such as the latest 10, you must submit your GET request with the following structure: `https://api.tlopo.com/releases/feed/10`.
 
 ### API Response
-The API will respond a list of JSON objects.  Each JSON object will have the following keys:
+The API will respond a list of JSON objects. Each JSON object will have the following keys:
 
 > JSON Response
 
@@ -383,7 +383,7 @@ If there is not an active banner, the API will respond an empty JSON object.
 ## Download API
 * Different download servers depending on game distribution.
 * Operating system name in download URL.
-* The patcher JSON describes client topology.
+* The section on the [patcher JSON](https://thelegendofpiratesonline.github.io/documentation/#patcher-json) describes client topology.
 
 ### Download URLs
 
@@ -419,21 +419,22 @@ from bz2 import BZ2Decompressor
 r = requests.get('https://download.tlopo.com/win32/resources/default/phase_3.mf.bz2', stream=True)
 decompressor = BZ2Decompressor()
 with open('resources/default/phase_3.mf', 'wb') as content:
-    for chunk in data.iter_content(chunk_size=128):
+    for chunk in r.iter_content(chunk_size=128):
         content.write(decompressor.decompress(chunk))
 ```
 
 Download urls must be built depending on the host operating system, the filepath, and the file followed by `.bz2`. 
 
 * `https://download.tlopo.com/<operating_system>/<file_path>/<file>.bz2`
-* filepath and file must be read from the patcher JSON outlined in the next section.
+* Filepath and file must be read from the [patcher JSON](https://thelegendofpiratesonline.github.io/documentation/#patcher-json).
+* Download API will respond with a binary in compressed `.bz2` format, this must be decompressed for general use.
 
 
 |  Distribution         | Operating System |  Download Server and OS Name            |
 |-----------------------|------------------|-----------------------------------------|
 |  Live (Prod) Server   |      Windows     | https://download.tlopo.com/win32/       |
 |  Live (Prod) Server   |      MacOS       | https://download.tlopo.com/mac/         |
-|  Live (Prod) Server   |      Linux       | https://download.tlopo.com/linux2/      |
+|  Live (Prod) Server   |      Linux       | Not Available                           |
 |  Test Server          |      Windows     | https://download-test.tlopo.com/win64/  |
 |  Test Server          |      MacOS       | https://download-test.tlopo.com/mac/    |
 |  Test Server          |      Linux       | https://download-test.tlopo.com/linux2/ |
@@ -441,13 +442,14 @@ Download urls must be built depending on the host operating system, the filepath
 |  Dev (QA) Server      |      MacOS       | https://download-dev.tlopo.com/mac/     |
 |  Dev (QA) Server      |      Linux       | https://download-dev.tlopo.com/linux2/  |
 
-Note: Live linux distribution doesn't yet exist, win32 will eventually be changed to win64
+Note: Inconsistencies due to Test/QA running on ["Pypperoni" compiler](https://github.com/Pypperoni/pypperoni) codebase. Live files will be very different from Test/QA. Installing to same directory may result in issues.
 
 ## Patcher JSON
 
 * `patcher.json` describes a client installation.
 * `https://download.tlopo.com/<operating_system>/patcher.json`
 * Used to get names and locations of all other client files on the download server.
+* Reference [Download APIs](https://thelegendofpiratesonline.github.io/documentation/#download-api) section for proper paths.
 
 ### Calling the API
 
@@ -477,13 +479,14 @@ To contact the API, submit a HTTPS GET request to the API URL.
                 "phase_3.mf_96121de_f1bae71.patch"
             ]
         },
+        ...
     }
 "launcher-version": "1.4.0", 
 "server-version": "1.24.8", 
 "mac_launcher_version": "1.5.2"}
 ```
 
-The API will responde with a large JSON object containing four keys, three for versions, and the fourth key "files". The files top-level key contains sub-keys for every file for a client installation.
+The API will respond with a large JSON object containing 4 keys; 3 for versions, and the 4th key "files". The files top-level key contains sub-keys for every file for a client installation.
 
 The name of the sub-key contains the path and file name. For example, `resources/default/` is the path and `phase_3.mf` is the file. These paths are to be used for both when saving the files to the client, and when downloading from from the server.
 
@@ -494,13 +497,13 @@ Each file key has the following sub-keys:
 | Key     | Value                                 |
 |---------|---------------------------------------|
 | path    | The path for download and saving      |
-| hash    | SHA256 file hash                      |
+| hash    | SHA256 file hash - 1st 7 characters   |
 | patches | Patch files, see the patching section |
 
 ## Patching
 
 * Sometimes a file may have accompanying `.patch` files with it. 
-* These are specified in the patcher JSON, see the above sections.
+* These are specified in the [Patcher JSON](https://thelegendofpiratesonline.github.io/documentation/#patcher-json) section.
 * Small files to patch resources, save on bandwidth. 
 
 ### Downloading a Patch
@@ -510,14 +513,9 @@ For example, `https://download.tlopo.com/win32/patches/phase_3.mf_f1bae71_5da15c
 
 ### Applying a Patch
 
->Applying Patch
-
-```terminal
-patcher <patch_file> <old_file>
-```
-
 TLOPO's standard launcher comes bundled with `patcher.exe` or `patcher.app`, a command line tool to apply patches.
 
+`patcher <patch_file> <old_file>`
 
 # Gameserver
 
