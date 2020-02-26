@@ -656,7 +656,7 @@
 </code></pre>
 <p>By default, the URL will respond with the latest 5 releases.  If you wish to receive a different amount, such as the latest 10, you must submit your GET request with the following structure: <code>https://api.tlopo.com/releases/feed/10</code>.</p>
 <h3 id='api-response-4'>API Response</h3>
-<p>The API will respond a list of JSON objects.  Each JSON object will have the following keys:</p>
+<p>The API will respond a list of JSON objects. Each JSON object will have the following keys:</p>
 
 <blockquote>
 <p>JSON Response</p>
@@ -739,7 +739,7 @@
 <ul>
 <li>Different download servers depending on game distribution.</li>
 <li>Operating system name in download URL.</li>
-<li>The patcher JSON describes client topology.</li>
+<li>The section on the <a href="https://thelegendofpiratesonline.github.io/documentation/#patcher-json">patcher JSON</a> describes client topology.</li>
 </ul>
 <h3 id='download-urls'>Download URLs</h3>
 <blockquote>
@@ -772,14 +772,15 @@
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://download.tlopo.com/win32/resources/default/phase_3.mf.bz2'</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 <span class="n">decompressor</span> <span class="o">=</span> <span class="n">BZ2Decompressor</span><span class="p">()</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'resources/default/phase_3.mf'</span><span class="p">,</span> <span class="s">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">content</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">128</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">128</span><span class="p">):</span>
         <span class="n">content</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">decompressor</span><span class="o">.</span><span class="n">decompress</span><span class="p">(</span><span class="n">chunk</span><span class="p">))</span>
 </code></pre>
 <p>Download urls must be built depending on the host operating system, the filepath, and the file followed by <code>.bz2</code>. </p>
 
 <ul>
 <li><code>https://download.tlopo.com/&lt;operating_system&gt;/&lt;file_path&gt;/&lt;file&gt;.bz2</code></li>
-<li>filepath and file must be read from the patcher JSON outlined in the next section.</li>
+<li>Filepath and file must be read from the <a href="https://thelegendofpiratesonline.github.io/documentation/#patcher-json">patcher JSON</a>.</li>
+<li>Download API will respond with a binary in compressed <code>.bz2</code> format, this must be decompressed for general use.</li>
 </ul>
 
 <table><thead>
@@ -802,7 +803,7 @@
 <tr>
 <td>Live (Prod) Server</td>
 <td>Linux</td>
-<td>https://download.tlopo.com/linux2/</td>
+<td>Not Available</td>
 </tr>
 <tr>
 <td>Test Server</td>
@@ -836,12 +837,13 @@
 </tr>
 </tbody></table>
 
-<p>Note: Live linux distribution doesn&#39;t yet exist, win32 will eventually be changed to win64</p>
+<p>Note: Inconsistencies due to Test/QA running on <a href="https://github.com/Pypperoni/pypperoni">&quot;Pypperoni&quot; compiler</a> codebase. Live files will be very different from Test/QA. Installing to same directory may result in issues.</p>
 <h2 id='patcher-json'>Patcher JSON</h2>
 <ul>
 <li><code>patcher.json</code> describes a client installation.</li>
 <li><code>https://download.tlopo.com/&lt;operating_system&gt;/patcher.json</code></li>
 <li>Used to get names and locations of all other client files on the download server.</li>
+<li>Reference <a href="https://thelegendofpiratesonline.github.io/documentation/#download-api">Download APIs</a> section for proper paths.</li>
 </ul>
 <h3 id='calling-the-api-5'>Calling the API</h3>
 <blockquote>
@@ -867,12 +869,13 @@
                 </span><span class="s2">"phase_3.mf_96121de_f1bae71.patch"</span><span class="w">
             </span><span class="p">]</span><span class="w">
         </span><span class="p">},</span><span class="w">
+        </span><span class="err">...</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="s2">"launcher-version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.4.0"</span><span class="p">,</span><span class="w"> 
 </span><span class="s2">"server-version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.24.8"</span><span class="p">,</span><span class="w"> 
 </span><span class="s2">"mac_launcher_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.5.2"</span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>The API will responde with a large JSON object containing four keys, three for versions, and the fourth key &quot;files&quot;. The files top-level key contains sub-keys for every file for a client installation.</p>
+<p>The API will respond with a large JSON object containing 4 keys; 3 for versions, and the 4th key &quot;files&quot;. The files top-level key contains sub-keys for every file for a client installation.</p>
 
 <p>The name of the sub-key contains the path and file name. For example, <code>resources/default/</code> is the path and <code>phase_3.mf</code> is the file. These paths are to be used for both when saving the files to the client, and when downloading from from the server.</p>
 
@@ -892,7 +895,7 @@
 </tr>
 <tr>
 <td>hash</td>
-<td>SHA256 file hash</td>
+<td>SHA256 file hash - 1st 7 characters</td>
 </tr>
 <tr>
 <td>patches</td>
@@ -902,7 +905,7 @@
 <h2 id='patching'>Patching</h2>
 <ul>
 <li>Sometimes a file may have accompanying <code>.patch</code> files with it. </li>
-<li>These are specified in the patcher JSON, see the above sections.</li>
+<li>These are specified in the <a href="https://thelegendofpiratesonline.github.io/documentation/#patcher-json">Patcher JSON</a> section.</li>
 <li>Small files to patch resources, save on bandwidth. </li>
 </ul>
 <h3 id='downloading-a-patch'>Downloading a Patch</h3>
@@ -910,12 +913,9 @@
 
 <p>For example, <code>https://download.tlopo.com/win32/patches/phase_3.mf_f1bae71_5da15c4.patch</code></p>
 <h3 id='applying-a-patch'>Applying a Patch</h3>
-<blockquote>
-<p>Applying Patch</p>
-</blockquote>
-<pre class="highlight shell_session"><code>patcher &lt;patch_file&gt; &lt;old_file&gt;
-</code></pre>
 <p>TLOPO&#39;s standard launcher comes bundled with <code>patcher.exe</code> or <code>patcher.app</code>, a command line tool to apply patches.</p>
+
+<p><code>patcher &lt;patch_file&gt; &lt;old_file&gt;</code></p>
 <h1 id='gameserver'>Gameserver</h1><h2 id='ocean-api'>Ocean API</h2>
 <ul>
 <li><code>https://api.tlopo.com/shards</code></li>
