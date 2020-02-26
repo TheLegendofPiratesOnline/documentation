@@ -376,7 +376,8 @@ If there is not an active banner, the API will respond an empty JSON object.
 # Downloads
 
 * Handles downloads for game client.
-* API invoked with HTTP GET streamed connection.
+* API invoked with HTTP GET request.
+* May want to handle requests with a stream for big files.
 
 
 ## Download API
@@ -385,6 +386,43 @@ If there is not an active banner, the API will respond an empty JSON object.
 * The patcher JSON describes client topology.
 
 ### Download URLs
+
+> Sample Code - Windows Download Server
+
+```python
+# https://pypi.python.org/pypi/requests
+import requests 
+
+r = requests.get('https://download.tlopo.com/win32/resources/default/phase_3.mf.bz2')
+print(r.content)
+```
+
+> Sample Code - Stream Request
+
+```python
+# https://pypi.python.org/pypi/requests
+import requests 
+
+r = requests.get('https://download.tlopo.com/win32/resources/default/phase_3.mf.bz2', stream=True)
+with open(filename, 'wb') as content:
+    for chunk in r.iter_content(chunk_size=128):
+        content.write(chunk)
+```
+
+> Sample Code - Decompress bz2
+
+```python
+# https://pypi.python.org/pypi/requests
+import requests
+from bz2 import BZ2Decompressor
+
+r = requests.get('https://download.tlopo.com/win32/resources/default/phase_3.mf.bz2', stream=True)
+decompressor = BZ2Decompressor()
+with open('resources/default/phase_3.mf', 'wb') as content:
+    for chunk in data.iter_content(chunk_size=128):
+        content.write(decompressor.decompress(chunk))
+```
+
 Download urls must be built depending on the host operating system, the filepath, and the file followed by `.bz2`. 
 
 * `https://download.tlopo.com/<operating_system>/<file_path>/<file>.bz2`
