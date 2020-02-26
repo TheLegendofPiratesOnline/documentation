@@ -732,7 +732,8 @@
 <h1 id='downloads'>Downloads</h1>
 <ul>
 <li>Handles downloads for game client.</li>
-<li>API invoked with HTTP GET streamed connection.</li>
+<li>API invoked with HTTP GET request.</li>
+<li>May want to handle requests with a stream for big files.</li>
 </ul>
 <h2 id='download-api'>Download API</h2>
 <ul>
@@ -741,6 +742,39 @@
 <li>The patcher JSON describes client topology.</li>
 </ul>
 <h3 id='download-urls'>Download URLs</h3>
+<blockquote>
+<p>Sample Code - Windows Download Server</p>
+</blockquote>
+<pre class="highlight python tab-python"><code><span class="c"># https://pypi.python.org/pypi/requests</span>
+<span class="kn">import</span> <span class="nn">requests</span> 
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://download.tlopo.com/win32/resources/default/phase_3.mf.bz2'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>Sample Code - Stream Request</p>
+</blockquote>
+<pre class="highlight python tab-python"><code><span class="c"># https://pypi.python.org/pypi/requests</span>
+<span class="kn">import</span> <span class="nn">requests</span> 
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://download.tlopo.com/win32/resources/default/phase_3.mf.bz2'</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">content</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">128</span><span class="p">):</span>
+        <span class="n">content</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>Sample Code - Decompress bz2</p>
+</blockquote>
+<pre class="highlight python tab-python"><code><span class="c"># https://pypi.python.org/pypi/requests</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">bz2</span> <span class="kn">import</span> <span class="n">BZ2Decompressor</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://download.tlopo.com/win32/resources/default/phase_3.mf.bz2'</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">decompressor</span> <span class="o">=</span> <span class="n">BZ2Decompressor</span><span class="p">()</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'resources/default/phase_3.mf'</span><span class="p">,</span> <span class="s">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">content</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">128</span><span class="p">):</span>
+        <span class="n">content</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">decompressor</span><span class="o">.</span><span class="n">decompress</span><span class="p">(</span><span class="n">chunk</span><span class="p">))</span>
+</code></pre>
 <p>Download urls must be built depending on the host operating system, the filepath, and the file followed by <code>.bz2</code>. </p>
 
 <ul>
