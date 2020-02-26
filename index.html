@@ -247,6 +247,20 @@
               </ul>
           </li>
           <li>
+            <a href="#downloads" class="toc-h1 toc-link" data-title="Downloads">Downloads</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#download-api" class="toc-h2 toc-link" data-title="Download API">Download API</a>
+                  </li>
+                  <li>
+                    <a href="#patcher-json" class="toc-h2 toc-link" data-title="Patcher JSON">Patcher JSON</a>
+                  </li>
+                  <li>
+                    <a href="#patching" class="toc-h2 toc-link" data-title="Patching">Patching</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#gameserver" class="toc-h1 toc-link" data-title="Gameserver">Gameserver</a>
               <ul class="toc-list-h2">
                   <li>
@@ -587,16 +601,14 @@
 <p>The API will respond a list of JSON objects.  Each JSON object will have the following keys:</p>
 
 <blockquote>
-<p>JSON Response
-<code>json
-{&quot;url&quot;: &quot;https://tlopo.com/news/post/126/&quot;,
- &quot;date&quot;: &quot;2017-12-13 19:00:00&quot;,
- &quot;author&quot;: &quot;John Carver&quot;,
- &quot;id&quot;: 126,
- &quot;title&quot;: &quot;Twelve Days of Celebration!&quot;}
-</code></p>
+<p>JSON Response</p>
 </blockquote>
-
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://tlopo.com/news/post/126/"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-13 19:00:00"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Carver"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">126</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Twelve Days of Celebration!"</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -647,14 +659,12 @@
 <p>The API will respond a list of JSON objects.  Each JSON object will have the following keys:</p>
 
 <blockquote>
-<p>JSON Response
-<code>json
-{&quot;url&quot;: &quot;https://tlopo.com/release/4.3.2&quot;,
- &quot;date&quot;: &quot;2017-12-13 19:00:00&quot;,
- &quot;version&quot;: &quot;4.3.2&quot;}
-</code></p>
+<p>JSON Response</p>
 </blockquote>
-
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://tlopo.com/release/4.3.2"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-13 19:00:00"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.3.2"</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -719,13 +729,166 @@
 </tbody></table>
 
 <p>If there is not an active banner, the API will respond an empty JSON object.</p>
+<h1 id='downloads'>Downloads</h1>
+<ul>
+<li>Handles downloads for game client.</li>
+<li>API invoked with HTTP GET streamed connection.</li>
+</ul>
+<h2 id='download-api'>Download API</h2>
+<ul>
+<li>Different download servers depending on game distribution.</li>
+<li>Operating system name in download URL.</li>
+<li>The patcher JSON describes client topology.</li>
+</ul>
+<h3 id='download-urls'>Download URLs</h3>
+<p>Download urls must be built depending on the host operating system, the filepath, and the file followed by <code>.bz2</code>. </p>
+
+<ul>
+<li><code>https://download.tlopo.com/&lt;operating_system&gt;/&lt;file_path&gt;/&lt;file&gt;.bz2</code></li>
+<li>filepath and file must be read from the patcher JSON outlined in the next section.</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Distribution</th>
+<th>Operating System</th>
+<th>Download Server and OS Name</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Live (Prod) Server</td>
+<td>Windows</td>
+<td>https://download.tlopo.com/win32/</td>
+</tr>
+<tr>
+<td>Live (Prod) Server</td>
+<td>MacOS</td>
+<td>https://download.tlopo.com/mac/</td>
+</tr>
+<tr>
+<td>Live (Prod) Server</td>
+<td>Linux</td>
+<td>https://download.tlopo.com/linux2/</td>
+</tr>
+<tr>
+<td>Test Server</td>
+<td>Windows</td>
+<td>https://download-test.tlopo.com/win64/</td>
+</tr>
+<tr>
+<td>Test Server</td>
+<td>MacOS</td>
+<td>https://download-test.tlopo.com/mac/</td>
+</tr>
+<tr>
+<td>Test Server</td>
+<td>Linux</td>
+<td>https://download-test.tlopo.com/linux2/</td>
+</tr>
+<tr>
+<td>Dev (QA) Server</td>
+<td>Windows</td>
+<td>https://download-dev.tlopo.com/win64/</td>
+</tr>
+<tr>
+<td>Dev (QA) Server</td>
+<td>MacOS</td>
+<td>https://download-dev.tlopo.com/mac/</td>
+</tr>
+<tr>
+<td>Dev (QA) Server</td>
+<td>Linux</td>
+<td>https://download-dev.tlopo.com/linux2/</td>
+</tr>
+</tbody></table>
+
+<p>Note: Live linux distribution doesn&#39;t yet exist, win32 will eventually be changed to win64</p>
+<h2 id='patcher-json'>Patcher JSON</h2>
+<ul>
+<li><code>patcher.json</code> describes a client installation.</li>
+<li><code>https://download.tlopo.com/&lt;operating_system&gt;/patcher.json</code></li>
+<li>Used to get names and locations of all other client files on the download server.</li>
+</ul>
+<h3 id='calling-the-api-5'>Calling the API</h3>
+<blockquote>
+<p>Sample Code - Windows Download Server</p>
+</blockquote>
+<pre class="highlight python tab-python"><code><span class="c"># https://pypi.python.org/pypi/requests</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://download.tlopo.com/win32/patcher.json'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
+<p>To contact the API, submit a HTTPS GET request to the API URL.</p>
+<h3 id='api-response-6'>API Response</h3>
+<blockquote>
+<p>JSON Response - Windows Download Server</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"files"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"resources/default/phase_3.mf"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"resources/default"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5da15c4"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"patches"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"phase_3.mf_f1bae71_5da15c4.patch"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"phase_3.mf_96121de_f1bae71.patch"</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="s2">"launcher-version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.4.0"</span><span class="p">,</span><span class="w"> 
+</span><span class="s2">"server-version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.24.8"</span><span class="p">,</span><span class="w"> 
+</span><span class="s2">"mac_launcher_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.5.2"</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>The API will responde with a large JSON object containing four keys, three for versions, and the fourth key &quot;files&quot;. The files top-level key contains sub-keys for every file for a client installation.</p>
+
+<p>The name of the sub-key contains the path and file name. For example, <code>resources/default/</code> is the path and <code>phase_3.mf</code> is the file. These paths are to be used for both when saving the files to the client, and when downloading from from the server.</p>
+
+<p>For instance, to download the <code>phase_3.mf</code> file we would call <code>https://download.tlopo.com/win32/resources/default/phase_3.mf.bz2</code>. Refer to the Download API section for more information.</p>
+
+<p>Each file key has the following sub-keys:</p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>path</td>
+<td>The path for download and saving</td>
+</tr>
+<tr>
+<td>hash</td>
+<td>SHA256 file hash</td>
+</tr>
+<tr>
+<td>patches</td>
+<td>Patch files, see the patching section</td>
+</tr>
+</tbody></table>
+<h2 id='patching'>Patching</h2>
+<ul>
+<li>Sometimes a file may have accompanying <code>.patch</code> files with it. </li>
+<li>These are specified in the patcher JSON, see the above sections.</li>
+<li>Small files to patch resources, save on bandwidth. </li>
+</ul>
+<h3 id='downloading-a-patch'>Downloading a Patch</h3>
+<p>Use the standard download API format along with <code>patcher/&lt;PATCHFILE.patch&gt;.bz2</code></p>
+
+<p>For example, <code>https://download.tlopo.com/win32/patches/phase_3.mf_f1bae71_5da15c4.patch</code></p>
+<h3 id='applying-a-patch'>Applying a Patch</h3>
+<blockquote>
+<p>Applying Patch</p>
+</blockquote>
+<pre class="highlight shell_session"><code>patcher &lt;patch_file&gt; &lt;old_file&gt;
+</code></pre>
+<p>TLOPO&#39;s standard launcher comes bundled with <code>patcher.exe</code> or <code>patcher.app</code>, a command line tool to apply patches.</p>
 <h1 id='gameserver'>Gameserver</h1><h2 id='ocean-api'>Ocean API</h2>
 <ul>
 <li><code>https://api.tlopo.com/shards</code></li>
 <li>Reports the status of each ocean with information on current events, such as an active invasion.</li>
 <li>Responds in JSON format.</li>
 </ul>
-<h3 id='calling-the-api-5'>Calling the API</h3>
+<h3 id='calling-the-api-6'>Calling the API</h3>
 <p>To contact the API, submit a HTTPS GET request to the API URL.</p>
 
 <blockquote>
@@ -736,7 +899,7 @@
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.tlopo.com/shards/'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-</code></pre><h3 id='api-response-6'>API Response</h3>
+</code></pre><h3 id='api-response-7'>API Response</h3>
 <p>The API will respond a large JSON object containing numerous keys.  Each top-level key is the ocean&#39;s &quot;base channel&quot;, which differentiates each server from one another inside TLOPO&#39;s internal network.</p>
 
 <p>For example, <code>401000000</code> is Abassa and <code>413000000</code> is Poderoso.</p>
@@ -822,7 +985,7 @@
 <li>Returns information regarding each of TLOPO&#39;s services and their online status.</li>
 <li>Responds in JSON format.</li>
 </ul>
-<h3 id='calling-the-api-6'>Calling the API</h3>
+<h3 id='calling-the-api-7'>Calling the API</h3>
 <p>To contact the API, submit a HTTPS GET request to the API URL.</p>
 
 <blockquote>
@@ -833,7 +996,7 @@
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.tlopo.com/system/status/'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-</code></pre><h3 id='api-response-7'>API Response</h3>
+</code></pre><h3 id='api-response-8'>API Response</h3>
 <p>The API will respond with a large JSON object.  This object will have the following keys:</p>
 
 <table><thead>
