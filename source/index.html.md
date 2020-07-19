@@ -257,9 +257,17 @@ The HTML responded will not contain any kind of background.  The intention is fo
 
 ## News Feed API
 
-* `https://api.tlopo.com/news/feed/<number_of_posts>`
+* `https://api.tlopo.com/news/feed/`
 * Returns the latest news posts.
 * Responds in JSON format.
+
+### Query Parameters
+- limit
+    - default: 5
+    - required: false
+- offset
+    - default: 0
+    - required: false
 
 ### Calling the API
 To contact the API, submit a HTTPS GET request to the API URL.
@@ -270,7 +278,7 @@ To contact the API, submit a HTTPS GET request to the API URL.
 # https://pypi.python.org/pypi/requests
 import requests 
 
-r = requests.get('https://api.tlopo.com/news/feed/')
+r = requests.get('https://api.tlopo.com/news/feed/?limit=10&offset=0')
 print(r.text)
 ```
 
@@ -299,9 +307,17 @@ The API will respond a list of JSON objects.  Each JSON object will have the fol
 
 ## Release Notes Feed API
 
-* `https://api.tlopo.com/releases/feed/<number_of_posts>`
+* `https://api.tlopo.com/releases/feed/`
 * Returns the latest releases.
 * Responds in JSON format.
+
+### Query Parameters
+- limit
+    - default: 5
+    - required: false
+- offset
+    - default: 0
+    - required: false
 
 ### Calling the API
 To contact the API, submit a HTTPS GET request to the API URL.
@@ -312,7 +328,7 @@ To contact the API, submit a HTTPS GET request to the API URL.
 # https://pypi.python.org/pypi/requests
 import requests
 
-r = requests.get('https://api.tlopo.com/releases/feed/')
+r = requests.get('https://api.tlopo.com/releases/feed/?limit=10&offset=0')
 print(r.text)
 ```
 
